@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C //DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>JSON/RPC 2.0 with Google App Engine (Python)</title>
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
+    <!--[if lt IE 8]>
+      <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+  <body>
+    <div class="container">
+      <div id="header" class="span-24">
+        <div class="links">
+          <a href="http://code.google.com/appengine">Google App Engine</a>
+          <span>&nbsp;</span>
+          <a href="http://code.google.com/webtoolkit">Google Web Toolkit</a>
+          <a href="http://github.com/rodaebel/jsongae">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+        </div>
+      </div>
+      <div class="span-24 headline">
+        <div class="span-24">
+          <h1>
+            Talking JSON-RPC 2.0 with Google App Engine
+          </h1>
+          <hr />
+          <h2 class="emph">
+            Remote Procedure Calls The Other Way
+          </h2>
+        </div>
+      </div>
+      <hr />
+      <div class="span-14 colborder">
+        <p>
+          Remote Procedure Calls are commonly synchronous. This means that a
+          client expects an immediate response with some kind of result from
+          the server.
+        </p>
+        <p>
+          In contrast, JSON-RPC allows for bidirectional, asynchronous
+          communication between the service and the client, treating each more
+          like peers and allowing peers to call one another or send
+          notifications to one another.
+        </p>
+        <p>
+          <img style="padding-right:30px;margin-right:20px;border-right:1px solid #ddd" src="/images/jsongae_sync.gif" />
+          <img src="/images/jsongae.gif" />
+        </p>
+        <p>
+          Think of a message board. The client receives a <i>Remote Procedure
+          Call</i> from the server to store an incoming message
+          <b>client-side</b>. This could happen even when the board isn't
+          shown, for instance, when the user composes a new message.
+          Especially mobile web applications don't have much space to show a
+          message board and an input box at the same time.
+        </p>
+        <p>
+          It also allows multiple commands to be sent to a peer at once, which
+          can be highly useful to keep network traffic low. Bear in mind that
+          these messages may be answered out of order.
+        </p>
+        <h3>Channel API / Web Sockets</h3>
+        <p>
+          In order to accomplish asynchronous communication for JSON-RPC, we
+          need a service which enables us to send notifications to the client.
+        </p>
+      </div>
+      <div class="span-9 last">
+        <p>
+          This sample application demonstrates how to run a client written
+          with GWT on Google App Engine (Python). The client communicates with
+          the server interfaces through <a href="http://groups.google.com/group/json-rpc/web/json-rpc-2-0" target="_blank">JSON-RPC Version 2.0</a>.
+        </p>
+        <p>
+          <a href="client/index.html">Run Client Application</a>
+        </p>
+      </div>
+      <div class="span-24">
+      </div>
+    </div>
+  </body>
+</html>

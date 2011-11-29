@@ -72,9 +72,11 @@ function EditQuest() {
 }
 
 
-function listPoints(){
-  
-     jQT.goTo('#Points', 'flip');
+function listPoints(key){
+    
+     global_currentQuest = key;
+    
+   //  jQT.goTo('#Points', 'flip');
 
     // alert('about to list the points');
      
@@ -89,10 +91,6 @@ function listPoints(){
 }
 
 
-function createPoint(quest){
-
-
-}
 
 
 
@@ -135,13 +133,5 @@ function showQuest() {
 
 
 
-function CreatePoints() {
-    alert('her');
-}
-
-function ChangeCurrent(CurrentID) {
-   global_currentQuest = CurrentID; 
-   showQuest();
-}
 
 

@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+<!--
+        <script src="http://jsconsole.com/remote.js?"></script>
+        <script src="http://192.168.1.2:8080/target/target-script-min.js"></script>
+-->
+        <title>Where to Now</title>
+        
+         <!-- our -->
+
+        <style type="text/css" media="screen">@import "../js/jqtouch.css";</style>
+        <style type="text/css" media="screen">@import "themes/wheretonext/theme.css";</style>
+       
+        
+        <script src="../js/gobal.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../js/jquery-1.5.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
+        
+        <script src="../js/jqt.location.js" type="application/x-javascript" charset="utf-8"></script>
+
+        
+        <!-- our libraries -->
+        
+        <script src="/js/jquery.jsonrpc.js"></script>
+        <script src="/js/jquerytmpl.js"></script>
+        <script src="/js/jquery-ui-1.8.12.custom.min.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/view.js"></script>
+        <script src="/js/model.js"></script>
+        
+    <script>
+        
+            var jQT = new $.jQTouch({
+                icon: 'jqtouch.png',
+                icon4: 'jqtouch4.png',
+                addGlossToIcon: false,
+                startupScreen: 'jqt_startup.png',
+                statusBar: 'black',
+                preloadImages: [
+                    'themes/jqt/img/activeButton.png',
+                    'themes/jqt/img/back_button.png',
+                    'themes/jqt/img/back_button_clicked.png',
+                    'themes/jqt/img/blueButton.png',
+                    'themes/jqt/img/button.png',
+                    'themes/jqt/img/button_clicked.png',
+                    'themes/jqt/img/grayButton.png',
+                    'themes/jqt/img/greenButton.png',
+                    'themes/jqt/img/redButton.png',
+                    'themes/jqt/img/whiteButton.png',
+                    'themes/jqt/img/loading.gif'
+                    ]
+            });
+            
+            // main document funtuion:
+            $(function(){
+                //get current 
+                
+                listPublishedQuests();
+              
+            });
+            
+            
+        </script>
+        <style type="text/css" media="screen">
+            #jqt.fullscreen #home .info {
+                display: none;
+            }
+            div#jqt #about {
+                padding: 100px 10px 40px;
+                text-shadow: rgba(255, 255, 255, 0.3) 0px -1px 0;
+                font-size: 13px;
+                text-align: center;
+                background: #161618;
+            }
+            div#jqt #about p {
+                margin-bottom: 8px;
+            }
+            div#jqt #about a {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="jqt">
+            
+            <!-- ################################################################################  -->
+            <!-- Home screen  -->
+            <!-- ################################################################################  -->
+            
+
+            <div id="home" class="current">
+                <div class="toolbar">
+                    <h1>Where to Next</h1>
+                    <a class="button slideup" id="infoButton" href="#about">About</a>
+                </div>
+                
+                <div class="info">
+                    <p>TODO - add intro and intro graphic maybe </p>
+                </div>
+                
+                 <!-- Add the list of other -->
+             
+                 <script id="questLists_template" type="text/x-jquery-tmpl">
+                            
+                     <li class="arrow">
+                         <a href="#view" onClick="ChangeCurrent(${key});showQuest('#quest_template','#showQuest')">${name}
+                         <br/>
+                         <p>${desc}</p></a>
+                     </li> 
+                         
+                 </script>  
+                 
+                  <h2>Quest's to Explore and Play</h2>
+                    
+                  <ul class="edit rounded" id="questLists">
+                         <li class="loading">&nbsp;</li>
+                  </ul>
+           
+                
+            </div>
+            
+           
+            
+            <!-- ################################################################################  -->
+            <!--  View a quest   -->
+            <!-- ################################################################################  -->
+         
+                            
+            <div id="view">
+                <div class="toolbar">
+                    <h1>View</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <br />              
+                <!-- start with just get out and displayed -->
+                
+                <script id="quest_template" type="text/x-jquery-tmpl">
+                            
+                     
+                   <ul class="edit rounded">
+
+                                <li><input type="text" name="name" placeholder="Name for the Quest" value="${name}" id="name"/></li>
+
+                                <li><textarea placeholder="Add the description" name="desc" value="${desc}"   ></textarea></li>
+                                <li><input type="text" name="tags" placeholder="Tags" value="${tags}"  /></li>
+                            </ul>
+                         
+                             <h3>Feedback Options</h3>
+                         
+                              <ul class="edit rounded">
+
+                                 <li>Show Hot Cold <span class="toggle"><input type="checkbox" name="opthotcold" value="${opthotcold}"/></span></li>
+                                 <li>Show Map <span class="toggle"><input type="checkbox" name="optmap" value="${optmap}" /></span></li>
+                                 <li>Show Arrows<span class="toggle"><input type="checkbox" name="optarrows" value="${optarrows}" /></span></li>
+                              </ul>
+                             
+                         
+                </script>  
+                 
+                  <h2>About</h2>
+                    
+                  <ul class="edit rounded" id="showQuest">
+                         <li class="loading">&nbsp;</li>
+                  </ul>
+                  
+               
+            </div>
+            
+            
+            
+                     
+           
+            
+            
+          <!-- ################################################################################  -->
+          <!-- About screen  -->
+          <!-- ################################################################################  -->
+            
+            <div id="about" class="selectable">
+                    <p> TODO - Add the information about the service 
+                    <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
+            </div>
+           
+         
+        
+           
+         
+        </div>
+    </body>
+</html>

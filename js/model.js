@@ -31,7 +31,7 @@ function savePoint(){
 
 function ChangeCurrent(CurrentID) {
    global_currentQuest = CurrentID; 
-   showQuest();
+   
 }
 
 
@@ -55,8 +55,25 @@ function getLocation() {
     
 }
 
-/* Changes to the currnet*/
+function showQuest(template,target) {
+ 
+ 
+  RPCcall({
+      funct:'showQuest', 
+      paramaters:{key:global_currentQuest},
+      //url:'/rpcedit',
+      template:template,
+      target:target,
+      success: function(result) {
+       
+     
+  },
+});
 
+  return false;
+  
+  
+}
 
 
 

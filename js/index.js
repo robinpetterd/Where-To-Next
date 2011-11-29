@@ -71,6 +71,35 @@ function EditQuest() {
   return false;
 }
 
+function DeleteQuest(key) {
+
+    var inobj=$("#editQuestForm").serializeJSON();
+
+      //window.console.log(inobj);
+      
+      RPCcall({
+      funct:'addeditQuest',//TODO change this to a delete backend call 
+      paramaters:{params:inobj},
+     // url:'/rpcedit',
+      //template:'#boovt_template',
+      //target:'#boot_div',
+      success: function(result) {
+        //alert(result);
+        listMyQuests();
+
+        jQT.goTo('#author', '');
+
+      },
+      
+    
+     
+  
+  
+});
+
+  return false;
+}
+
 
 function listPoints(key){
     
@@ -111,25 +140,7 @@ function listMyQuests() {
   return false; 
 }
 
-function showQuest() {
- 
- 
-  RPCcall({
-      funct:'showQuest', 
-      paramaters:{key:global_currentQuest},
-      //url:'/rpcedit',
-      template:'#editQuest_template',
-      target:'#editQuestForm',
-      success: function(result) {
-       
-     
-  },
-});
 
-  return false;
-  
-  
-}
 
 
 

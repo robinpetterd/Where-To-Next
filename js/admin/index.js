@@ -19,13 +19,14 @@ function CreateQuest() {
       RPCcall({
       funct:'addeditQuest', 
       paramaters:{params:inobj},
-     // url:'/rpcedit',
+      url:'/rpcedit',
       //template:'#boovt_template',
       //target:'#boot_div',
       success: function(result) {
         //alert(result);
 
          global_currentQuestJSON = result;
+         listMyQuests();
          listPoints();
 
         //  $('#boot_div').dialog({modal:true,  title:'an alert', width:'460', height:'320' });
@@ -49,7 +50,7 @@ function EditQuest() {
       RPCcall({
       funct:'addeditQuest', 
       paramaters:{params:inobj},
-     // url:'/rpcedit',
+      url:'/rpcedit',
       //template:'#boovt_template',
       //target:'#boot_div',
       success: function(result) {
@@ -73,14 +74,11 @@ function EditQuest() {
 
 function DeleteQuest(key) {
 
-    var inobj=$("#editQuestForm").serializeJSON();
-
-      //window.console.log(inobj);
       
       RPCcall({
-      funct:'addeditQuest',//TODO change this to a delete backend call 
-      paramaters:{params:inobj},
-     // url:'/rpcedit',
+      funct:'deleteQuest',//TODO change this to a delete backend call 
+      paramaters:{key:key},
+      url:'/rpcedit',
       //template:'#boovt_template',
       //target:'#boot_div',
       success: function(result) {
@@ -90,13 +88,7 @@ function DeleteQuest(key) {
         jQT.goTo('#author', '');
 
       },
-      
-    
-     
-  
-  
 });
-
   return false;
 }
 
@@ -129,12 +121,9 @@ function listMyQuests() {
   RPCcall({
       funct:'listMyQuests', 
       //paramaters:{params:inobj},
-      //url:'/rpcedit',
+      url:'/rpcedit',
       template:'#questLists_template',
       target:'#questLists',
-      success: function(result) {
-          
-  },
 });
 
   return false; 

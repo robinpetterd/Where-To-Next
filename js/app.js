@@ -1,4 +1,6 @@
 // tell the rpc client where to connect
+//user https://github.com/datagraph/jquery-jsonrpc
+
 function RPCconnect(url) {
   $.jsonRPC.setup({
     endPoint: url,
@@ -16,22 +18,18 @@ function RPCcall(oArgs) {
   url=Listenning url such as /edit
   */
   var err;
+  var req={};
+  
   if (oArgs.error) {
-    err=oArgs.error;
+    req["error"]=oArgs.error;
   } else {
-    err=function(result) {
+    req["error"]=function(result) {
       // Result is an RPC 2.0 compatible response object
       alert(JSON.stringify(result));
     }
   }
-  var url;
-  if (oArgs.url) {
-    url=oArgs.url;
-  }
-  alert(JSON.stringify(oArgs));  
-  $.jsonRPC.request(oArgs.funct, {
-    params: oArgs.paramaters, 
-    success: function(returned) {
+    
+  req["success"]=function(returned) {
       // It comes back as an RPC 2.0 compatible response object
       if (oArgs.target && oArgs.template) {
         $(oArgs.target).html($(oArgs.template).tmpl(returned.result));
@@ -39,9 +37,19 @@ function RPCcall(oArgs) {
       if (oArgs.success) {
         oArgs.success(returned.result);
       }
-    },
-    error: err,
-  });
+  }
+  req["params"]=oArgs.paramaters
+  alert(JSON.stringify(req));
+  if (oArgs.url) {
+  
+    $.jsonRPC.withOptions({
+      endPoint: oArgs.url,
+      }, function() {
+        this.request(oArgs.funct, req);
+      });
+  } else {
+    $.jsonRPC.request(oArgs.funct, req);
+  }
 }
 
 (function( $ ){

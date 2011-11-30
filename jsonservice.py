@@ -14,16 +14,33 @@ class RPCHandler(JsonRpcHandler):
     """
 
     @ServiceMethod
-    def listMyQuests(self):
+    def listQuests(self):
       qs=Quest.all()
-      qs.filter('creator =',users.get_current_user())
       qs.order('name')
-      return modelfetchtoarray(qs.fetch(500))
+      listResults=modelfetchtoarray(qs.fetch(500))
+      if len(listResults)>0:
+        return listResults
+      else:
+        return True
 
     @ServiceMethod
     def showQuest(self, key):
       return modelrowtodict(Quest.get_by_id(int(key)))
 
+
+class RPCEditHandler(JsonRpcHandler):
+
+    @ServiceMethod
+    def listMyQuests(self):
+      qs=Quest.all()
+      qs.filter('creator =',users.get_current_user())
+      qs.order('name')
+      listResults=modelfetchtoarray(qs.fetch(500))
+      if len(listResults)>0:
+        return listResults
+      else:
+        return True
+      
     @ServiceMethod
     def addeditQuest(self, params):
       logging.error(params)
@@ -47,21 +64,4 @@ class RPCHandler(JsonRpcHandler):
     def deleteQuest(self, key):
       q=Quest.get_by_id(int(key))
       q.delete()
-      return True
-
-class RPCEditHandler(JsonRpcHandler):
-    @ServiceMethod
-    def addeditQuesttodo(self, params):
-      if params.has_key("key"):
-        q=Quest.get_by_id(int(params["key"]))
-      else:
-        q=Quest(creator=users.get_current_user(), name=params["name"])
-      q.desc=params["desc"]
-      q.points=params["points"]
-      q.opthotcold=params["opthotcold"]
-      q.optmap=params["optmap"]
-      q.optarrows=params["optarrows"]
-      q.tags=params["tags"]
-      q.optdraft=params["optdraft"]
-      q.put()
       return True

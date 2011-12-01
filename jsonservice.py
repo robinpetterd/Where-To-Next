@@ -43,25 +43,42 @@ class RPCEditHandler(JsonRpcHandler):
       
     @ServiceMethod
     def addeditQuest(self, params):
-      logging.error(params)
       if params.has_key("key"):
         q=Quest.get_by_id(int(params["key"]))
+        if not(q.creator==users.get_current_user()):
+          return False
+        q.name=params["name"]
       else:
         q=Quest(creator=users.get_current_user(), name=params["name"])
+      
       q.desc=params["desc"]
       q.points=params["points"]
-      for name in params.keys():
-        logging.error(name[0:3])   
-      #q.opthotcold=params["opthotcold"]
-      #q.optmap=params["optmap"]
-      #q.optarrows=params["optarrows"]
       q.tags=params["tags"]
-      #q.optdraft=params["optdraft"]
+      if params.has_key("opthotcold"):
+        q.opthotcold="checked"
+      else:
+        q.opthotcold=""
+      if params.has_key("optmap"):
+        q.optmap="checked"
+      else:
+        q.optmap=""
+      if params.has_key("optarrows"):
+        q.optarrows="checked"
+      else:
+        q.optarrows=""
+      if params.has_key("optdraft"):
+        q.optdraft="checked"
+      else:
+        q.optdraft=""
       q.put()
       return True
 
     @ServiceMethod
     def deleteQuest(self, key):
       q=Quest.get_by_id(int(key))
-      q.delete()
-      return True
+      if qs.creator==users.get_current_user():
+        q.delete()
+        return True
+      else:
+        return False
+      

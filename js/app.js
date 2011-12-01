@@ -39,7 +39,6 @@ function RPCcall(oArgs) {
       }
   }
   req["params"]=oArgs.paramaters
-  alert(JSON.stringify(req));
   if (oArgs.url) {
   
     $.jsonRPC.withOptions({

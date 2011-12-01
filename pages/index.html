@@ -100,7 +100,7 @@
                     <p>TODO - add intro and </p>
                 </div>
                 
-                
+               
                 <ul class="rounded">
                    <li class="arrow"><a href="/admin/index.html" rel="external">Author</a> </li>
                    <li class="arrow"><a href="#View" onClick="listQuests()" >View</a> </li>
@@ -114,7 +114,7 @@
            
             
             <!-- ################################################################################  -->
-            <!-- Author list the current screen  -->
+            <!-- list the current screen  -->
             <!-- ################################################################################  -->
          
                             
@@ -125,15 +125,23 @@
                 </div>
                  <br />
                 
+                 
                     <!-- Add the list of other -->
                     
                         <script id="questLists_template" type="text/x-jquery-tmpl">
-                              <li class="arrow"><a href="#edit" onClick="ChangeCurrent(${key});showQuest('#editQuest_template','#edit');">${name} </a> </li> 
-                       </script>    
+                            
+                            
+                              <li class="arrow"><a href="#play" onClick="ChangeCurrent(${key});showQuest('#playQuest_template','#play');">${name} </a> </li> 
+                      
+                        
+                        
+                        </script>    
                                       
                     <ul class="edit rounded" id="questLists">
                             
                     </ul>
+                        
+                        
             </div>
             
             
@@ -141,42 +149,21 @@
         
              
             <!-- ################################################################################  -->
-            <!-- view and existing Quest screen  -->
+            <!-- play Quest screen  -->
             <!-- ################################################################################  -->
          
-                      
-           
-           
-
-                
+                    
                          
-                        <script id="editQuest_template" type="text/x-jquery-tmpl">
+                        <script id="playQuest_template" type="text/x-jquery-tmpl">
                         <div class="toolbar">
                           <h1>${name} </h1>
                           
                           <a href="#" class="back">Back</a>
                         </div>
-                         {{if optdraft=="checked"}} <h3>Status (Draft)</h3> {{/if}}     
-                         <br />  
-                                <a href="#Points" class="greenButton listPoints" onClick="listPoints(${key});">Points</a>
-                         <br />  
-                     
-                            <ul class="edit rounded">
+                             {{if optdraft=="checked"}} <h2>Status (Draft)</h2> {{/if}}     
+                       
 
-                                
-
-                                <li><p>${desc}</p></li>
-                                <li><p>${tags}</p></li>
-                            </ul>
                          
-                             <h3>Feedback Options</h3>
-                         
-                              <ul class="edit rounded">
-
-                                 <li>Show Hot Cold <span class="toggle"><input type="checkbox" disabled name="opthotcold" value="" ${opthotcold}/></span></li>
-                                 <li>Show Map <span class="toggle"><input type="checkbox" disabled name="optmap" value="" ${optmap}/></span></li>
-                                 <li>Show Arrows<span class="toggle"><input type="checkbox" disabled name="optarrows" value="" ${optarrows}/></span></li>
-                              </ul>
                                 
                                  
                               
@@ -186,80 +173,10 @@
                           
                 
             
-            <div id="edit">
+            <div id="play"">
             </div>
             
             
-            <!-- ################################################################################  -->
-            <!-- List the current points screen  -->
-            <!-- ################################################################################  -->
-            
-            
-            
-             <div id="Points">
-                    <div class="toolbar">
-                        <h1>Points</h1>
-                        <a href="#" class="back">Back</a>
-                    </div>
-
-                       <br />
-                       
-                        <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()">Add Points</a>
-
-                        <script id="movieTemplate" type="text/x-jquery-tmpl">
-                            <li>
-                            <b>${Name}</b> (${ReleaseYear})
-                            </li>
-                       </script>
-
-                        <!-- Add the list of other -->
-                        <ul class="edit rounded" id="movieList">
-                        
-                        </ul>
-               </div>  
-            
-            
-            
-            <!-- ################################################################################  -->
-            <!-- Add new points screen  -->
-            <!-- ################################################################################  -->
-            
-            <div id="addPoint">
-                <div class="toolbar">
-                    <h1>Add Point</h1>
-                    <a href="#" class="back">Back</a>
-                </div>
-                
-            <span class="latitude"> </span>
-            <span class="longitude"> </span>
-                
-           <br/>
-            <div  class="whiteButton AddQuest" onClick="getLocation()">Refresh Location</div>
-          
-               <form onSubmit="addPoint()" id="CreatePointForm">
-                    <ul class="edit rounded">
-                        
-                         <li><input type="text" name="latitude" class="latitude" id="latitude" /></li>
-                         <li><input type="text" name="longitude" class="longitude"  id="longitude"/></li>
-        
-                                                
-                        <li><textarea placeholder="Add directions or the clue" name="directions" ></textarea></li>
-                        <li><textarea placeholder="Add the description" name="desc" ></textarea></li>
-
-                        <li><input type="text" name="score" placeholder="score" id="score"" /></li>
-                        
-                         
-
-                    </ul>
-                    
-                         <input type="hidden" name="points" id="point" value=""/>
-                         <input type="submit" class="greenButton AddQuest" value="Create"></input>
-
-               </form>
-                
-                
-             </div>              
-           
             
             
           <!-- ################################################################################  -->

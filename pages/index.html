@@ -128,126 +128,65 @@
                     <!-- Add the list of other -->
                     
                         <script id="questLists_template" type="text/x-jquery-tmpl">
-                              <li class="arrow"><a href="#edit" onClick="ChangeCurrent(${key});showQuest('#editQuest_template','#editQuestForm');">${name} </a> </li> 
+                              <li class="arrow"><a href="#edit" onClick="ChangeCurrent(${key});showQuest('#editQuest_template','#edit');">${name} </a> </li> 
                        </script>    
                                       
                     <ul class="edit rounded" id="questLists">
                             
                     </ul>
-                       
-                    <br />
-                    <a href="#add" class="greenButton AddQuest">Add</a>
-
-               
             </div>
             
             
-            
-            
-            
-            <!-- ################################################################################  -->
-            <!-- Add form screen  -->
-            <!-- ################################################################################  -->         
-            
-            
-            
-             <div id="add">
-                <div class="toolbar">
-                    <h1>Add</h1>
-                    <a href="#" class="back">Back</a>
-                </div>
-                <form onSubmit="CreateQuest()" id="CreateQuestForm">
-                    <ul class="edit rounded">
-                      
-                        <li><input type="text" name="name" placeholder="Name for the Quest" id="name"/></li>
-                        <li><textarea placeholder="Add the description" name="desc" id="desc"></textarea></li>
-                        <li><input type="text" name="tags" placeholder="Tags" id="tags" /></li>
-                    </ul>
-                        
-                        <h2>Feedback Options</h2>
-                         <ul class="edit rounded"> 
-                             <li>Show Hot Cold <span class="toggle"><input type="checkbox" name="opthotcold" value="True"/></span></li>
-                             <li>Show Map <span class="toggle"><input type="checkbox" name="optmap" value="True" /></span></li>
-                             <li>Show Arrows<span class="toggle"><input type="checkbox" name="optarrows" value="True" /></span></li>
-                        </ul>
-                        
-                         <h2>Status</h2>
-                         <ul class="edit rounded"> 
-                             <li>Draft<span class="toggle"><input type="checkbox" name="optdraft" value="True" /></span></li>
-                         </ul>
-                    
-                         <input type="hidden" name="points" id="points" value="" />
-                         <input type="submit" class="greenButton AddQuest" value="Create"/></input>
 
-                        </form>
-                          
-              </div>
         
              
             <!-- ################################################################################  -->
-            <!-- Edit and existing Quest screen  -->
+            <!-- view and existing Quest screen  -->
             <!-- ################################################################################  -->
          
                       
-           <div id="edit">
-                <div class="toolbar">
-                    <h1>Edit</h1>
-                    <a href="#" class="back">Back</a>
-                </div>
+           
+           
+
                 
                          
                         <script id="editQuest_template" type="text/x-jquery-tmpl">
-                              
+                        <div class="toolbar">
+                          <h1>${name} </h1>
+                          
+                          <a href="#" class="back">Back</a>
+                        </div>
+                         {{if optdraft=="checked"}} <h3>Status (Draft)</h3> {{/if}}     
                          <br />  
                                 <a href="#Points" class="greenButton listPoints" onClick="listPoints(${key});">Points</a>
                          <br />  
                      
                             <ul class="edit rounded">
 
-                                <li><input type="text" name="name" placeholder="Name for the Quest" value="${name}" id="name"/></li>
+                                
 
-                                <li><textarea placeholder="Add the description" name="desc">${desc}</textarea></li>
-                                <li><input type="text" name="tags" placeholder="Tags" value="${tags}"  /></li>
+                                <li><p>${desc}</p></li>
+                                <li><p>${tags}</p></li>
                             </ul>
                          
                              <h3>Feedback Options</h3>
                          
                               <ul class="edit rounded">
 
-                                 <li>Show Hot Cold <span class="toggle"><input type="checkbox" name="opthotcold" value="${opthotcold}"/></span></li>
-                                 <li>Show Map <span class="toggle"><input type="checkbox" name="optmap" value="${optmap}" /></span></li>
-                                 <li>Show Arrows<span class="toggle"><input type="checkbox" name="optarrows" value="${optarrows}" /></span></li>
+                                 <li>Show Hot Cold <span class="toggle"><input type="checkbox" disabled name="opthotcold" value="" ${opthotcold}/></span></li>
+                                 <li>Show Map <span class="toggle"><input type="checkbox" disabled name="optmap" value="" ${optmap}/></span></li>
+                                 <li>Show Arrows<span class="toggle"><input type="checkbox" disabled name="optarrows" value="" ${optarrows}/></span></li>
                               </ul>
                                 
-                            <h3>Status</h3>
-                            
-                            <ul class="edit rounded">
-
-                                 <li>Draft<span class="toggle"><input type="checkbox" name="optdraft" value="${optdraft}" /></span></li>
-
-
-                            </ul>
-
-                                  <input type="hidden" name="points" id="point" value="${points}"/>
-                                  <input type="hidden" name="key" id="key" value="${key}"/>
-                                  
-                                  <input type="submit" class="greenButton editQuest" value="Save"></input>
-                                  
-                                  
-                                  <input type="submit" class="redButton removeQuest" onClick="DeleteQuest(${key})" value="Delete TODO"></input>
-      
+                                 
                               
                        </script>
                                       
-                       
-                       
-                 <form onSubmit="EditQuest()" id="editQuestForm">
-               
-                 </form>
+
                           
                 
             
-                    
+            <div id="edit">
             </div>
             
             

@@ -24,6 +24,7 @@ function CreateQuest() {
          global_currentQuestJSON = result;
          listMyQuests();
          listPoints();
+         jQT.goTo('#Points', 'flip');
 
         //  $('#boot_div').dialog({modal:true,  title:'an alert', width:'460', height:'320' });
       },
@@ -72,7 +73,7 @@ function DeleteQuest(key) {
 
       
       RPCcall({
-      funct:'deleteQuest',//TODO change this to a delete backend call 
+      funct:'deleteQuest', 
       paramaters:{key:key},
       url:'/rpcedit',
       //template:'#boovt_template',
@@ -80,7 +81,6 @@ function DeleteQuest(key) {
       success: function(result) {
         //alert(result);
         listMyQuests();
-
         jQT.goTo('#author', '');
 
       },
@@ -93,7 +93,7 @@ function listPoints(key){
     
      global_currentQuest = key;
     
-   //  jQT.goTo('#Points', 'flip');
+     //jQT.goTo('#Points', 'flip');
 
     // alert('about to list the points');
      

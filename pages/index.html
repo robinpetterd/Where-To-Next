@@ -65,6 +65,28 @@
             // main document funtuion:
             $(function(){
                
+               //the url has ?4 then directed to the quest with the key 
+               if(window.location.href.indexOf('?') != -1) {
+                                //alert('yes there is url para');
+				
+                                var parArray = getUrlVars();
+                                //alert(parArray[0]);
+                                
+                                ChangeCurrent(parArray[0]);
+                                showQuest('#playQuest_template','#play');
+                                startQuest();
+                                jQT.goTo('#play');
+
+                                
+			} 
+                        
+                        /*
+		* Get the URL var and takes the user to the current form for that performance.    
+		* 
+		*/ 			
+		
+		
+                
             });
             
             

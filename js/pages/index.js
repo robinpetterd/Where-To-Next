@@ -25,6 +25,13 @@ function listQuests() {
 }
 
 
+function startQuest() {
+  
+  //where the code of score 
+
+  return false; 
+}
+
 
 
 

@@ -9,14 +9,57 @@
 /* point data is string so need some work getting and out. 
  * 
  */
-
+function getPoints(){
+    
+      if(global_currentQuestJSON.points != ''){
+              var points = JSON.parse(global_currentQuestJSON.points);
+         } else {
+             var points = {};
+         }
+         
+         return points;
+}
 
 function addPoint(){
     
-    //TODO - NEXT add contents CreatePointForm to the points JSON .. which has been setup yet.
+          var inobj=$("#CreatePointForm").serializeObject();
+          
+         //now get the points as JSON 
+         
+         var points = getPoints();
+         //console.log(points);
+
+         //alert(points.length);
+         //inobj.ID = points.length;
+         var clength =  points.length;
+         if (clength == null) { clength = 0 };
+         //points.[clength] = clength;
+         
+         points[clength] = inobj;
+        //console.log(global_currentQuestJSON);
+         
+         global_currentQuestJSON.points = JSON.stringify(points);         
+         console.log(global_currentQuestJSON);
+         savePoints();
+     
+
+       
+}
+
+function editPoint(id){
     
    
+    var points = getPoints();
+    console.log(points); 
+     
+
+    
+   // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );
+
+   
 }
+
+
 
 function removePoint(){
     
@@ -24,8 +67,21 @@ function removePoint(){
 }
 
 
-function savePoint(){
+function savePoints(){
     
+     //save that point 
+          RPCcall({
+              funct:'addeditQuest', 
+              paramaters:{params:global_currentQuestJSON},
+              url:'/rpcedit',
+              //template:'#boovt_template',
+              //target:'#boot_div',
+              success: function(result) {
+                //alert(result);
+                   listPoints();
+                   jQT.goTo('#Points', 'flip');
+              },
+          });
    
 }
 
@@ -57,6 +113,7 @@ function getLocation() {
 
 function showQuest(template,target) {
  
+  
  
   RPCcall({
       funct:'showQuest', 
@@ -65,8 +122,10 @@ function showQuest(template,target) {
       template:template,
       target:target,
       success: function(result) {
+      
+      global_currentQuestJSON = result;
        
-     
+      
   },
 });
 
@@ -74,6 +133,28 @@ function showQuest(template,target) {
   
   
 }
+
+/* 
+* Util to convert the form to nice JSON 
+*/
+
+$.fn.serializeObject = function()
+{
+   var o = {};
+   var a = this.serializeArray();
+   $.each(a, function() {
+       if (o[this.name]) {
+           if (!o[this.name].push) {
+               o[this.name] = [o[this.name]];
+           }
+           o[this.name].push(this.value || '');
+       } else {
+           o[this.name] = this.value || '';
+       }
+   });
+   return o;
+};
+
 
 
 

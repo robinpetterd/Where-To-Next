@@ -6,7 +6,6 @@ RPCconnect('/rpc');
 listMyQuests();
 
 
-
 function CreateQuest() {
       var inobj=$("#CreateQuestForm").serializeJSON();
 
@@ -23,7 +22,7 @@ function CreateQuest() {
 
          global_currentQuestJSON = result;
          listMyQuests();
-         listPoints();
+         //listPoints();
          jQT.goTo('#Points', 'flip');
 
         //  $('#boot_div').dialog({modal:true,  title:'an alert', width:'460', height:'320' });
@@ -93,17 +92,11 @@ function listPoints(key){
     
      global_currentQuest = key;
     
-     //jQT.goTo('#Points', 'flip');
-
-    // alert('about to list the points');
+     var points = getPoints();
      
-     var movies = [
-        { Name: "The Red Violin", ReleaseYear: "1998" },
-        { Name: "Eyes Wide Shut", ReleaseYear: "1999" },
-        { Name: "The Inheritance", ReleaseYear: "1976" }
-    ];
+
     
-    $( "#movieTemplate" ).tmpl( movies).appendTo( "#movieList" );
+    $( "#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
 
 }
 

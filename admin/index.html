@@ -89,7 +89,8 @@
             <!-- Home screen  -->
             <!-- ################################################################################  -->
             
-
+           
+            
 
             
            
@@ -249,14 +250,14 @@
                        
                         <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()">Add Points</a>
 
-                        <script id="movieTemplate" type="text/x-jquery-tmpl">
-                            <li>
-                            <b>${Name}</b> (${ReleaseYear})
+                        <script id="pointsTemplate" type="text/x-jquery-tmpl">
+                            <li>                            
+                             <li class="arrow"><a href="#editPoint" onClick="editPoint(${ID});">${desc} - ${ID} </a> </li> 
                             </li>
                        </script>
 
                         <!-- Add the list of other -->
-                        <ul class="edit rounded" id="movieList">
+                        <ul class="edit rounded" id="pointsList">
                         
                         </ul>
                </div>  
@@ -277,7 +278,7 @@
             <span class="longitude"> </span>
                 
            <br/>
-            <div  class="whiteButton AddQuest" onClick="getLocation()">Refresh Location</div>
+            <div  class="whiteButton getLocation" onClick="getLocation()">Refresh Location</div>
           
                <form onSubmit="addPoint()" id="CreatePointForm">
                     <ul class="edit rounded">
@@ -286,16 +287,15 @@
                          <li><input type="text" name="longitude" class="longitude"  id="longitude"/></li>
         
                                                 
-                        <li><textarea placeholder="Add directions or the clue" name="directions" ></textarea></li>
                         <li><textarea placeholder="Add the description" name="desc" ></textarea></li>
+                        <li><textarea placeholder="Add directions or the clue" name="directions" ></textarea></li>
 
-                        <li><input type="text" name="score" placeholder="score" id="score"" /></li>
+                        <li><input type="text" name="score" placeholder="score" id="score" /></li>
                         
                          
 
                     </ul>
                     
-                         <input type="hidden" name="points" id="point" value=""/>
                          <input type="submit" class="greenButton AddQuest" value="Create"></input>
 
                </form>
@@ -303,6 +303,54 @@
                 
              </div>              
            
+            
+            
+            <!-- ################################################################################  -->
+            <!-- Edit new points screen  -->
+            <!-- ################################################################################  -->
+            
+            <div id="editPoint">
+                <div class="toolbar">
+                    <h1>edit Point</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+           
+                 <script id="editPointsTemplate" type="text/x-jquery-tmpl">
+                     <ul class="edit rounded">
+                        
+                             <li><input type="text" name="latitude" class="latitude" id="latitude" value="${latitude}"  /></li>
+                             <li><input type="text" name="longitude" class="longitude"  id="longitude" value="${longitude}" /></li>
+
+                            <li><textarea placeholder="Description" name="desc" value="${desc}" ></textarea></li>
+                            <li><textarea placeholder="Directions or the clue" name="directions" value="${directions}" ></textarea></li>
+
+                            <li><input type="text" name="score" placeholder="score" id="score"value="${score}"  /></li>
+
+
+
+                     </ul>
+                    
+                         <input type="submit" class="greenButton editPoint" value="Save"></input>
+
+                </script>
+
+                      
+                        
+                        
+            <span class="latitude"> </span>
+            <span class="longitude"> </span>
+                
+           <br/>
+            <div  class="whiteButton getLocation" onClick="getLocation()">Refresh Location</div>
+          
+               <form onSubmit="editPoint()" id="editPointForm">
+                  
+               </form>
+                
+                
+             </div>              
+           
+            
             
             
           <!-- ################################################################################  -->

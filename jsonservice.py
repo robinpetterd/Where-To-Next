@@ -76,7 +76,7 @@ class RPCEditHandler(JsonRpcHandler):
     @ServiceMethod
     def deleteQuest(self, key):
       q=Quest.get_by_id(int(key))
-      if qs.creator==users.get_current_user():
+      if q.creator==users.get_current_user():
         q.delete()
         return True
       else:

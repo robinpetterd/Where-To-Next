@@ -92,7 +92,6 @@ function listPoints(key){
     
      var points = getPoints();
      
-
     
     $( "#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
 

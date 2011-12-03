@@ -18,7 +18,6 @@ handlers:
 
 - url: /pages
   static_dir: pages
-  login: required
 
 - url: /admin
   static_dir: admin
@@ -36,7 +35,7 @@ handlers:
   script: app.application
 
 - url: /rpcedit
-  script: main.application
+  script: app.application
   login: required
   
 - url: /.*

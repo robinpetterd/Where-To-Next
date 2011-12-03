@@ -71,7 +71,6 @@
         this._validateRequestCallbacks(options.success, options.error);
 
         // Perform the actual request
-        alert(JSON.stringify(this._requestDataObj(method, options.params, options.id)), options);
         this._doRequest(JSON.stringify(this._requestDataObj(method, options.params, options.id)), options);
 
         return true;

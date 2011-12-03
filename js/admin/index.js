@@ -27,9 +27,7 @@ function CreateQuest() {
 
         //  $('#boot_div').dialog({modal:true,  title:'an alert', width:'460', height:'320' });
       },
-      
-    
-     
+          
   
   
 });
@@ -119,8 +117,69 @@ function listMyQuests() {
 }
 
 
+function addPoint(){
+    
+          var inobj=$("#CreatePointForm").serializeObject();
+          
+         //now get the points as JSON 
+         
+         var points = getPoints();
+         //console.log(points);
+
+         //alert(points.length);
+         //inobj.ID = points.length;
+         var clength =  points.length;
+         if (clength == null) { clength = 0 };
+         //points.[clength] = clength;
+         
+         points[clength] = inobj;
+        //console.log(global_currentQuestJSON);
+         
+         global_currentQuestJSON.points = JSON.stringify(points);         
+         console.log(global_currentQuestJSON);
+         savePoints();
+     
+
+       
+}
+
+function editPoint(id){
+    
+   
+    var points = getPoints();
+    console.log(points); 
+     
+
+    
+   // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );
+
+   
+}
 
 
 
+function removePoint(){
+    
+   
+}
+
+
+function savePoints(){
+    
+     //save that point 
+          RPCcall({
+              funct:'addeditQuest', 
+              paramaters:{params:global_currentQuestJSON},
+              url:'/rpcedit',
+              //template:'#boovt_template',
+              //target:'#boot_div',
+              success: function(result) {
+                //alert(result);
+                   listPoints();
+                   jQT.goTo('#Points', 'flip');
+              },
+          });
+   
+}
 
 

@@ -251,9 +251,11 @@
                         <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()">Add Point</a>
 
                         <script id="pointsTemplate" type="text/x-jquery-tmpl">
-                            <li>                            
-                             <li class="arrow"><a href="#editPoint" onClick="editPoint(${ID});">${Feedback} - ${ID} </a> </li> 
-                            </li>
+                        {{each }}
+                        
+                          <li class="arrow"><a href="#editPoint" onClick="editPoint();"></a> </li> 
+                        {{/each}}               
+               
                        </script>
 
                         <!-- Add the list of other -->

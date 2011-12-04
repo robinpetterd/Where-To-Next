@@ -87,13 +87,33 @@ function DeleteQuest(key) {
 
 
 function listPoints(key){
-    
+     
+     //console.log('-------- in points -------');
+     
      global_currentQuest = key;
     
      var points = getPoints();
-     console.log(points);
+     //console.log(points);
      
-     //$("#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
+     //Some debug stuff
+     /*     $.each(points, function(key, value) { 
+            console.log(key + ': ' + value); 
+               $.each(value, function(key, value) { 
+                    console.log(key + ': ' + value); 
+                 });
+
+      });*/
+       
+       $('#pointsList').empty();
+       
+       $.each(points, function(i,point) { 
+                //console.log(point.latitude); 
+              
+                $('#pointsList').append('<li class="arrow"><a href="#editPoint" onClick="editPoint('+ i + ');"></a>' + point.Feedback  + '</li>');
+                
+       });
+
+ 
 
 }
 
@@ -138,7 +158,7 @@ function addPoint(){
         //console.log(global_currentQuestJSON);
          
          global_currentQuestJSON.points = JSON.stringify(points);         
-         console.log(global_currentQuestJSON);
+        //console.log(global_currentQuestJSON);
          savePoints();
      
 

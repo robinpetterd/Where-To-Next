@@ -109,7 +109,7 @@ function listPoints(key){
        $.each(points, function(i,point) { 
                 //console.log(point.latitude); 
               
-                $('#pointsList').append('<li class="arrow"><a href="#editPoint" onClick="editPoint('+ i + ');"></a>' + point.Feedback  + '</li>');
+                $('#pointsList').append('<li class="arrow"><a href="#editPoint"  onClick="editPoint('+ i +')" >' + point.Feedback  + '</a></li>');
                 
        });
 
@@ -167,12 +167,11 @@ function addPoint(){
 
 function editPoint(id){
     
- 
     var points = getPoints();
     console.log(points[id]); 
      
     
-   // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );
+    $( "#editPointsTemplate" ).tmpl(points[id]).appendTo( "#editPointForm" );
 
    
 }

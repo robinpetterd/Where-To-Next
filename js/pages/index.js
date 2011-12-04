@@ -102,7 +102,7 @@ function Pointsloop() {
 	var lookup = jQT.updateLocation(function(coords){
 		if (coords) {
 			//global_currentCoords = coords; 
-			//$('.latitude').empty().val(coords.latitude); 
+			//$('.latitude').empty().val(coords.latitude);
 			//$('.longitude').empty().val(coords.longitude);
 			var plist=getPoints();
 			//alert(JSON.stringify(coords.latitude));

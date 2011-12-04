@@ -34,7 +34,7 @@
                 {
                     callback = fn;
                     navigator.geolocation.getCurrentPosition(savePosition,
-                      {enableHighAccuracy:true;}
+                      {enableHighAccuracy:true}
                     
                     );
                     return true;

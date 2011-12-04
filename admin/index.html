@@ -313,6 +313,7 @@
                 </div>
            
                  <script id="editPointsTemplate" type="text/x-jquery-tmpl">
+                     <input type="hidden" name="currentPoint" class="currentPoint" id="currentPoint" value="${latitude}"  />
                      <ul class="edit rounded">
                         
                              <li><input type="text" name="latitude" class="latitude" id="latitude" value="${latitude}"  /></li>
@@ -340,7 +341,7 @@
            <br/>
             <div  class="whiteButton getLocation" onClick="getLocation()">Refresh Location</div>
           
-               <form onSubmit="editPoint()" id="editPointForm">
+               <form onSubmit="savePoint()" id="editPointForm">
                   
                </form>
                 

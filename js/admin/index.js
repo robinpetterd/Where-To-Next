@@ -1,4 +1,6 @@
     
+var global_current_point;
+
 //tell the client where to connect
 RPCconnect('/rpc');
 
@@ -136,29 +138,23 @@ function listMyQuests() {
 }
 
 
-function addPoint(){
+function savePoint(){
     
-          var inobj=$("#CreatePointForm").serializeObject();
+          var inobj=$("#editPointForm").serializeObject();
+          //alert(global_current_point);
+          
           
          //now get the points as JSON 
          
          var points = getPoints();
          //console.log(points);
-         var clength = 0;
+        
+         //console.log(points[global_current_point]);
          
-         for (p in points) {
-             clength ++;
-         }
-         
-         //inobj.ID = points.length;
-        // var clength =  points.length;
-         //points.[clength] = clength;
-         
-         points[clength] = inobj;
-        //console.log(global_currentQuestJSON);
+         points[global_current_point] = inobj;
          
          global_currentQuestJSON.points = JSON.stringify(points);         
-        //console.log(global_currentQuestJSON);
+         console.log(global_currentQuestJSON);
          savePoints();
      
 
@@ -168,10 +164,10 @@ function addPoint(){
 function editPoint(id){
     
     var points = getPoints();
-    console.log(points[id]); 
-     
+    ///console.log(points[id]); 
+     global_current_point = id;
     
-    $( "#editPointsTemplate" ).tmpl(points[id]).appendTo( "#editPointForm" );
+    $("#editPointsTemplate" ).tmpl(points[id]).appendTo( "#editPointForm" );
 
    
 }

@@ -1,4 +1,6 @@
     
+var global_current_point;
+
 //tell the client where to connect
 RPCconnect('/rpc');
 
@@ -87,13 +89,33 @@ function DeleteQuest(key) {
 
 
 function listPoints(key){
-    
+     
+     //console.log('-------- in points -------');
+     
      global_currentQuest = key;
     
      var points = getPoints();
-     console.log(points);
+     //console.log(points);
      
-     //$("#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
+     //Some debug stuff
+     /*     $.each(points, function(key, value) { 
+            console.log(key + ': ' + value); 
+               $.each(value, function(key, value) { 
+                    console.log(key + ': ' + value); 
+                 });
+
+      });*/
+       
+       $('#pointsList').empty();
+       
+       $.each(points, function(i,point) { 
+                //console.log(point.latitude); 
+              
+                $('#pointsList').append('<li class="arrow"><a href="#editPoint"  onClick="editPoint('+ i +')" >' + point.Feedback  + '</a></li>');
+                
+       });
+
+ 
 
 }
 
@@ -116,26 +138,20 @@ function listMyQuests() {
 }
 
 
-function addPoint(){
+function savePoint(){
     
-          var inobj=$("#CreatePointForm").serializeObject();
+          var inobj=$("#editPointForm").serializeObject();
+          //alert(global_current_point);
+          
           
          //now get the points as JSON 
          
          var points = getPoints();
          //console.log(points);
-         var clength = 0;
+        
+         //console.log(points[global_current_point]);
          
-         for (p in points) {
-             clength ++;
-         }
-         
-         //inobj.ID = points.length;
-        // var clength =  points.length;
-         //points.[clength] = clength;
-         
-         points[clength] = inobj;
-        //console.log(global_currentQuestJSON);
+         points[global_current_point] = inobj;
          
          global_currentQuestJSON.points = JSON.stringify(points);         
          console.log(global_currentQuestJSON);
@@ -147,12 +163,11 @@ function addPoint(){
 
 function editPoint(id){
     
-  
     var points = getPoints();
-    console.log(points); 
-     
+    ///console.log(points[id]); 
+     global_current_point = id;
     
-   // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );
+    $("#editPointsTemplate" ).tmpl(points[id]).appendTo( "#editPointForm" );
 
    
 }

@@ -91,9 +91,9 @@ function listPoints(key){
      global_currentQuest = key;
     
      var points = getPoints();
+     console.log(points);
      
-    
-    $( "#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
+     //$("#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
 
 }
 
@@ -144,11 +144,10 @@ function addPoint(){
 
 function editPoint(id){
     
-   
+  
     var points = getPoints();
     console.log(points); 
      
-
     
    // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );
 

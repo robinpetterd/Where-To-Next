@@ -167,9 +167,9 @@ function addPoint(){
 
 function editPoint(id){
     
-  
+ 
     var points = getPoints();
-    console.log(points); 
+    console.log(points[id]); 
      
     
    // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );

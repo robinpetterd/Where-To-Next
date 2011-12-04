@@ -1,3 +1,5 @@
+var watchid;
+var currentcoords;
     
 //tell the client where to connect
 RPCconnect('/rpc');
@@ -66,17 +68,34 @@ function getUrlVars()
                 
 function listQuests() {
   //var inobj=$("#CreateQuestForm").serializeJSON()
-  
+  console.log('listQuests');
   RPCcall({
       funct:'listQuests', 
       //paramaters:{params:inobj},
       template:'#questLists_template',
       target:'#questLists',
-});
+  });
 
-  return false; 
+  return true; 
 }
 
+function startwatching() {
+  watchid=navigator.geolocation.watchPosition(positionupdated, gpserror,  {enableHighAccuracy:true});
+}
+
+function positionupdated(position) {
+   //alert(JSON.stringify(position.coords));
+   currentcoords=position.coords;
+   Pointsloop();
+}
+
+function gpserror(err) {
+  alert(JSON.stringify(err));
+}
+
+function stopwatching() {
+  navigator.geolocation.clearWatch(watchid);
+}
 
 function startQuest(key) {
   
@@ -90,10 +109,10 @@ function startQuest(key) {
       target:'#play',
       success: function(result) {
       
-      global_currentQuestJSON = result;
-      Pointsloop();
-      jQT.goTo('#play');
-  },
+        global_currentQuestJSON = result;
+        startwatching();
+        jQT.goTo('#play');
+    },
 }); 
   return false; 
 }

@@ -30,6 +30,7 @@ function RPCcall(oArgs) {
   }
     
   req["success"]=function(returned) {
+      console.log(JSON.stringify(returned));
       // It comes back as an RPC 2.0 compatible response object
       if (oArgs.target && oArgs.template) {
         $(oArgs.target).html($(oArgs.template).tmpl(returned.result));

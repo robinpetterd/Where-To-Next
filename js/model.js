@@ -27,6 +27,7 @@ function ChangeCurrent(CurrentID) {
 }
 
 
+
 function getLocation() {
     
     //alert('looing for location');

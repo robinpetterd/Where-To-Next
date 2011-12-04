@@ -60,7 +60,9 @@ function showQuest(template,target) {
       success: function(result) {
       
       global_currentQuestJSON = result;
-       
+      if (nexttask) {
+        nexttask();
+      }
       
   },
 });

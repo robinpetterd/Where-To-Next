@@ -36,8 +36,7 @@
           <script src="/js/pages/opthotcold.js"></script>
           <script src="/js/pages/optmap.js"></script>
           <script src="/js/pages/optarrows.js"></script>
-		  <script src="/js/pages/latlon.js">/* Latitude/Longitude formulae */</script>
-		  <script src="/js/pages/geo.js">/* Geodesy representation conversions */</script>
+		  <script src="/js/pages/latlon.js"></script>
                                  
         
         
@@ -65,31 +64,7 @@
             });
             
             // main document funtuion:
-            $(function(){
-               
-               //the url has ?4 then directed to the quest with the key 
-               if(window.location.href.indexOf('?') != -1) {
-                                //alert('yes there is url para');
-				
-                                var parArray = getUrlVars();
-                                //alert(parArray[0]);
-                                
-                                ChangeCurrent(parArray[0]);
-                                showQuest('#playQuest_template','#play');
-                                startQuest();
-                                jQT.goTo('#play');
 
-                                
-			} 
-                        
-                        /*
-		* Get the URL var and takes the user to the current form for that performance.    
-		* 
-		*/ 			
-		
-		
-                
-            });
             
             
         </script>
@@ -134,7 +109,7 @@
                 
                
                 <ul class="rounded">
-                   <li class="arrowauthor" ><a href="/admin/index.html" rel="external">Author</a> </li>
+                   <li class="arrow" ><a href="/admin/index.html" rel="external">Author</a> </li>
                    <li class="arrow view plays" ><a href="#View" onClick="listQuests()" >View</a> </li>
 
 
@@ -163,7 +138,7 @@
                         <script id="questLists_template" type="text/x-jquery-tmpl">
                             
                             
-                              <li class="arrow quest"><a href="#play" onClick="ChangeCurrent(${key});showQuest('#playQuest_template','#play');startQuest();">${name} </a> </li> 
+                              <li class="arrow quest"><a href="#play" onClick="startQuest(${key});">${name} {{if optdraft=="checked"}} (Draft){{/if}}</a> </li> 
                       
                         
                         
@@ -185,7 +160,16 @@
             <!-- ################################################################################  -->
          
                     
-                         
+                        <script id="pointlist_template" type="text/x-jquery-tmpl">
+                          <li class="arrow">
+                            <a href="">
+                              <b>${directions}</b>
+                              {{if distance}}<br/>Distance: ${distance} {{/if}}
+                              {{if heading}}<br/>Heading: ${heading} {{/if}}
+                              </p>
+                            </a>
+                          </li>
+                        </script>
                         <script id="playQuest_template" type="text/x-jquery-tmpl">
                         <div class="toolbar">
                           <h1>${name} </h1>
@@ -204,14 +188,17 @@
                                  </div>
                                 
                                 
+                                
                                 <!-- our main div's for the building the interface with -->
                                 
                                 <div id="opthotcold"></div>
                                 <div id="optmap"></div>
                                <div id=" optarrows"></div>
                                  
-                               </div> 
+                               
                               
+                            </div>
+                            <ul id="pointlist" class="rounded clear"></ul>    
                        </script>
                                       
 

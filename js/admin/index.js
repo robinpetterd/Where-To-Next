@@ -124,11 +124,14 @@ function addPoint(){
          
          var points = getPoints();
          //console.log(points);
-
-         //alert(points.length);
+         var clength = 0;
+         
+         for (p in points) {
+             clength ++;
+         }
+         
          //inobj.ID = points.length;
-         var clength =  points.length;
-         if (clength == null) { clength = 0 };
+        // var clength =  points.length;
          //points.[clength] = clength;
          
          points[clength] = inobj;

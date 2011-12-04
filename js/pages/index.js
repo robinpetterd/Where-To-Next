@@ -101,9 +101,11 @@ function startQuest(key) {
 function Pointsloop() {
   //alert(JSON.stringify(getPoints()));
   var plist=getPoints();
+  $('#pointlist').html('');
   for (i in plist) {
     //alert(JSON.stringify(i));
     //alert(JSON.stringify(plist[i]));
+    plist[i].id=i;
     plist[i].distance=20;
     plist[i].heading=20;
     //alert(JSON.stringify(plist[i]));
@@ -111,6 +113,11 @@ function Pointsloop() {
   }
 }
 
+function show_pointdetails(id) {
+  var plist=getPoints();
+  $('#pointdetails').html($('#pointdetails_template').tmpl(plist[id]));
+  
+} 
 
 
 

@@ -24,7 +24,7 @@
     {
         $.jQTouch.addExtension(function Location(){
             
-            var latitude, longitude, callback;
+            var latitude, longitude,accuracy,heading, callback;
             
             function checkGeoLocation() {
                 return navigator.geolocation;
@@ -33,7 +33,10 @@
                 if (checkGeoLocation())
                 {
                     callback = fn;
-                    navigator.geolocation.getCurrentPosition(savePosition);
+                    navigator.geolocation.getCurrentPosition(savePosition,
+                      {enableHighAccuracy:true;}
+                    
+                    );
                     return true;
                 } else {
                     console.log('Device not capable of geo-location.');
@@ -44,6 +47,8 @@
             function savePosition(position) {
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
+                accuracy = position.coords.accuracy;
+                heading= position.coords.heading;
                 if (callback) {
                     callback(getLocation());
                 }
@@ -52,7 +57,9 @@
                 if (latitude && longitude) {
                     return {
                         latitude: latitude,
-                        longitude: longitude
+                        longitude: longitude,
+                        accuracy: accuracy,
+                        heading: heading,                   
                     }
                 } else {
                     console.log('No location available. Try calling updateLocation() first.');

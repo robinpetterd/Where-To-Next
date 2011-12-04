@@ -161,7 +161,7 @@
                     
                         <script id="pointlist_template" type="text/x-jquery-tmpl">
                           <li class="arrow">
-                            <a href="">
+                            <a href="#pointdetails" onclick="show_pointdetails('${id}')">
                               <b>${directions}</b>
                               {{if distance}}<br/>Distance: ${distance} {{/if}}
                               {{if heading}}<br/>Heading: ${heading} {{/if}}
@@ -169,6 +169,18 @@
                             </a>
                           </li>
                         </script>
+                        <script id="pointdetails_template" type="text/x-jquery-tmpl">
+                          <div class="toolbar">
+                            <h1>${directions} </h1>
+                          
+                            <a href="#" class="back">Back</a>
+                          </div>
+                          <div>
+                            
+                          </div>
+                          
+                        </script>
+                        
                         <script id="playQuest_template" type="text/x-jquery-tmpl">
                         <div class="toolbar">
                           <h1>${name} </h1>
@@ -205,6 +217,8 @@
                 
             
             <div id="play"">
+            </div>
+            <div id="pointdetails"">
             </div>
             
             

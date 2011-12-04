@@ -91,9 +91,9 @@ function listPoints(key){
      global_currentQuest = key;
     
      var points = getPoints();
+     console.log(points);
      
-    
-    $( "#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
+     //$("#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
 
 }
 
@@ -124,11 +124,14 @@ function addPoint(){
          
          var points = getPoints();
          //console.log(points);
-
-         //alert(points.length);
+         var clength = 0;
+         
+         for (p in points) {
+             clength ++;
+         }
+         
          //inobj.ID = points.length;
-         var clength =  points.length;
-         if (clength == null) { clength = 0 };
+        // var clength =  points.length;
          //points.[clength] = clength;
          
          points[clength] = inobj;
@@ -144,11 +147,10 @@ function addPoint(){
 
 function editPoint(id){
     
-   
+  
     var points = getPoints();
     console.log(points); 
      
-
     
    // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );
 

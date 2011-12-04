@@ -9,7 +9,28 @@ RPCconnect('/rpc');
 
 ;
 
+$(function(){
+               
+               //the url has ?4 then directed to the quest with the key 
+               if(window.location.href.indexOf('?') != -1) {
+                                //alert('yes there is url para');
+				
+                                var parArray = getUrlVars();
+                                //alert(parArray[0]);
+                                startQuest(parArray[0]);
 
+                                
+			} 
+                        
+                        /*
+		* Get the URL var and takes the user to the current form for that performance.    
+		* 
+		*/ 			
+		
+		
+                
+});
+            
 function getUrlVars()
 				{
 					var pairs;
@@ -57,14 +78,33 @@ function listQuests() {
 }
 
 
-function startQuest() {
+function startQuest(key) {
   
   //where the code of score 
-
+  ChangeCurrent(key);
+  RPCcall({
+      funct:'showQuest', 
+      paramaters:{key:global_currentQuest},
+      //url:'/rpcedit',
+      template:'#playQuest_template',
+      target:'#play',
+      success: function(result) {
+      
+      global_currentQuestJSON = result;
+      Pointsloop();
+      jQT.goTo('#play');
+  },
+}); 
   return false; 
 }
 
-
+function Pointsloop() {
+  //alert(JSON.stringify(getPoints()));
+  var plist=getPoints();
+  for (i in plist) {
+    JSON.stringify(i);
+  }
+}
 
 
 

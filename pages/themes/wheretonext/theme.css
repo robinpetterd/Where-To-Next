@@ -624,4 +624,6 @@ input[type='submit'] {
    font-variant: bold;
 }
 
-
+.clear {
+    clear: both;
+}

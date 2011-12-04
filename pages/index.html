@@ -108,7 +108,7 @@
                 
                
                 <ul class="rounded">
-                   <li class="arrowauthor" ><a href="/admin/index.html" rel="external">Author</a> </li>
+                   <li class="arrow" ><a href="/admin/index.html" rel="external">Author</a> </li>
                    <li class="arrow view plays" ><a href="#View" onClick="listQuests()" >View</a> </li>
 
 
@@ -159,7 +159,16 @@
             <!-- ################################################################################  -->
          
                     
-                         
+                        <script id="pointlist_template" type="text/x-jquery-tmpl">
+                          <li class="arrow">
+                            <a href="">
+                              <b>${directions}</b>
+                              {{if distance}}<br/>Distance: ${distance} {{/if}}
+                              {{if heading}}<br/>Heading: ${heading} {{/if}}
+                              </p>
+                            </a>
+                          </li>
+                        </script>
                         <script id="playQuest_template" type="text/x-jquery-tmpl">
                         <div class="toolbar">
                           <h1>${name} </h1>
@@ -178,14 +187,17 @@
                                  </div>
                                 
                                 
+                                
                                 <!-- our main div's for the building the interface with -->
                                 
                                 <div id="opthotcold"></div>
                                 <div id="optmap"></div>
                                <div id=" optarrows"></div>
                                  
-                               </div> 
+                               
                               
+                            </div>
+                            <ul id="pointlist" class="rounded clear"></ul>    
                        </script>
                                       
 

@@ -102,7 +102,12 @@ function Pointsloop() {
   //alert(JSON.stringify(getPoints()));
   var plist=getPoints();
   for (i in plist) {
-    JSON.stringify(i);
+    //alert(JSON.stringify(i));
+    //alert(JSON.stringify(plist[i]));
+    plist[i].distance=20;
+    plist[i].heading=20;
+    //alert(JSON.stringify(plist[i]));
+    $('#pointlist').append($('#pointlist_template').tmpl(plist[i]));
   }
 }
 

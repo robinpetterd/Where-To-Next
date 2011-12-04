@@ -118,25 +118,35 @@ function startQuest(key) {
 }
 
 function Pointsloop() {
+	var lookup = jQT.updateLocation(function(coords){
+		if (coords) {
+			//global_currentCoords = coords; 
+			//$('.latitude').empty().val(coords.latitude);
+			//$('.longitude').empty().val(coords.longitude);
+			var plist=getPoints();
+			//alert(JSON.stringify(coords.latitude));
+			var p1from = new LatLon(coords.latitude, coords.longitude);
+			for (i in plist) {
+				//alert(JSON.stringify(i));
+				//alert(JSON.stringify(plist[i].latitude));
+				var p2to = new LatLon(plist[i].latitude, plist[i].longitude);
+				plist[i].distance = p1from.distanceTo(p2to);;
+				plist[i].heading=parseInt(p1from.bearingTo(p2to));
+				//alert(JSON.stringify(plist[i]));
+				$('#pointlist').append($('#pointlist_template').tmpl(plist[i]));
+			}
+		   
+		} else {
+			alert('Device not capable of geo-location.');
+		}
+    });
+    
+    return false;
+
   //alert(JSON.stringify(getPoints()));
-  var plist=getPoints();
-  $('#pointlist').html('');
-  for (i in plist) {
-    //alert(JSON.stringify(i));
-    //alert(JSON.stringify(plist[i]));
-    plist[i].id=i;
-    plist[i].distance=20;
-    plist[i].heading=20;
-    //alert(JSON.stringify(plist[i]));
-    $('#pointlist').append($('#pointlist_template').tmpl(plist[i]));
-  }
+  
 }
 
-function show_pointdetails(id) {
-  var plist=getPoints();
-  $('#pointdetails').html($('#pointdetails_template').tmpl(plist[id]));
-  
-} 
 
 
 

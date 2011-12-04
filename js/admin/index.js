@@ -12,6 +12,7 @@ function CreateQuest() {
       var inobj=$("#CreateQuestForm").serializeJSON();
 
       //window.console.log(inobj);
+      global_currentQuestJSON = inobj;
       
       RPCcall({
       funct:'addeditQuest', 
@@ -21,8 +22,7 @@ function CreateQuest() {
       //target:'#boot_div',
       success: function(result) {
         //alert(result);
-
-         global_currentQuestJSON = result;
+         
          listMyQuests();
          //listPoints();
          jQT.goTo('#Points', '');
@@ -138,9 +138,13 @@ function listPoints(key){
 function addPoint(){
     
           var inobj=$("#CreatePointForm").serializeObject();
-          
+          //console.log(global_currentQuestJSON);
          //now get the points as JSON 
          
+         
+        $('"#CreatePointForm"').not(':button, :submit, :reset, :hidden').val('');
+
+
          var points = getPoints();
          //console.log(points);
          var clength = 0;
@@ -157,7 +161,7 @@ function addPoint(){
         //console.log(global_currentQuestJSON);
          
          global_currentQuestJSON.points = JSON.stringify(points);         
-        //console.log(global_currentQuestJSON);
+        // console.log(global_currentQuestJSON);
          savePoints();
      
 
@@ -212,6 +216,7 @@ function editPoint(id){
     var points = getPoints();
     ///console.log(points[id]); 
      global_current_point = id;
+    $("#editPointForm").empty();
     
     $("#editPointsTemplate" ).tmpl(points[id]).appendTo( "#editPointForm" );
 

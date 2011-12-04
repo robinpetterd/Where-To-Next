@@ -25,7 +25,7 @@ function CreateQuest() {
          global_currentQuestJSON = result;
          listMyQuests();
          //listPoints();
-         jQT.goTo('#Points', 'flip');
+         jQT.goTo('#Points', '');
 
         //  $('#boot_div').dialog({modal:true,  title:'an alert', width:'460', height:'320' });
       },
@@ -154,10 +154,27 @@ function savePoint(){
          points[global_current_point] = inobj;
          
          global_currentQuestJSON.points = JSON.stringify(points);         
-         console.log(global_currentQuestJSON);
+         //console.log(global_currentQuestJSON);
          savePoints();
      
 
+       
+}
+
+
+function deletePoint(){
+  
+         var points = getPoints();
+         //console.log(points);
+        
+         //console.log(points[global_current_point]);
+         
+         delete  points[global_current_point];
+         
+         global_currentQuestJSON.points = JSON.stringify(points);         
+         //console.log(global_currentQuestJSON);
+         savePoints();
+  
        
 }
 
@@ -192,7 +209,7 @@ function savePoints(){
               success: function(result) {
                 //alert(result);
                    listPoints();
-                   jQT.goTo('#Points', 'flip');
+                   jQT.goTo('#Points', '');
               },
           });
    

@@ -101,7 +101,7 @@ function startQuest(key) {
 function Pointsloop() {
 	var lookup = jQT.updateLocation(function(coords){
 		if (coords) {
-			//global_currentCoords = coords;
+			//global_currentCoords = coords; 
 			//$('.latitude').empty().val(coords.latitude);
 			//$('.longitude').empty().val(coords.longitude);
 			var plist=getPoints();

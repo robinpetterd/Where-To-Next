@@ -7,7 +7,6 @@ RPCconnect('/rpc');
 // pull down the list of quests this user owns
 listMyQuests();
 
-
 function CreateQuest() {
       var inobj=$("#CreateQuestForm").serializeJSON();
 

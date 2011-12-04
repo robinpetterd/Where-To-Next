@@ -87,6 +87,20 @@ function DeleteQuest(key) {
   return false;
 }
 
+function listMyQuests() {
+  //var inobj=$("#CreateQuestForm").serializeJSON()
+  
+  RPCcall({
+      funct:'listMyQuests', 
+      //paramaters:{params:inobj},
+      url:'/rpcedit',
+      template:'#questLists_template',
+      target:'#questLists',
+});
+
+  return false; 
+}
+
 
 function listPoints(key){
      
@@ -121,21 +135,36 @@ function listPoints(key){
 
 
 
+function addPoint(){
+    
+          var inobj=$("#CreatePointForm").serializeObject();
+          
+         //now get the points as JSON 
+         
+         var points = getPoints();
+         //console.log(points);
+         var clength = 0;
+         
+         for (p in points) {
+             clength ++;
+         }
+         
+         //inobj.ID = points.length;
+        // var clength =  points.length;
+         //points.[clength] = clength;
+         
+         points[clength] = inobj;
+        //console.log(global_currentQuestJSON);
+         
+         global_currentQuestJSON.points = JSON.stringify(points);         
+        //console.log(global_currentQuestJSON);
+         savePoints();
+     
 
-
-function listMyQuests() {
-  //var inobj=$("#CreateQuestForm").serializeJSON()
-  
-  RPCcall({
-      funct:'listMyQuests', 
-      //paramaters:{params:inobj},
-      url:'/rpcedit',
-      template:'#questLists_template',
-      target:'#questLists',
-});
-
-  return false; 
+       
 }
+
+
 
 
 function savePoint(){

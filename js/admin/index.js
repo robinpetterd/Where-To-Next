@@ -1,4 +1,6 @@
     
+var global_current_point;
+
 //tell the client where to connect
 RPCconnect('/rpc');
 
@@ -23,7 +25,7 @@ function CreateQuest() {
          global_currentQuestJSON = result;
          listMyQuests();
          //listPoints();
-         jQT.goTo('#Points', 'flip');
+         jQT.goTo('#Points', '');
 
         //  $('#boot_div').dialog({modal:true,  title:'an alert', width:'460', height:'320' });
       },
@@ -85,22 +87,6 @@ function DeleteQuest(key) {
   return false;
 }
 
-
-function listPoints(key){
-    
-     global_currentQuest = key;
-    
-     var points = getPoints();
-     console.log(points);
-     
-     //$("#pointsTemplate" ).tmpl(points).appendTo( "#pointsList" );
-
-}
-
-
-
-
-
 function listMyQuests() {
   //var inobj=$("#CreateQuestForm").serializeJSON()
   
@@ -114,6 +100,39 @@ function listMyQuests() {
 
   return false; 
 }
+
+
+function listPoints(key){
+     
+     //console.log('-------- in points -------');
+     
+     global_currentQuest = key;
+    
+     var points = getPoints();
+     //console.log(points);
+     
+     //Some debug stuff
+     /*     $.each(points, function(key, value) { 
+            console.log(key + ': ' + value); 
+               $.each(value, function(key, value) { 
+                    console.log(key + ': ' + value); 
+                 });
+
+      });*/
+       
+       $('#pointsList').empty();
+       
+       $.each(points, function(i,point) { 
+                //console.log(point.latitude); 
+              
+                $('#pointsList').append('<li class="arrow"><a href="#editPoint"  onClick="editPoint('+ i +')" >' + point.Feedback  + '</a></li>');
+                
+       });
+
+ 
+
+}
+
 
 
 function addPoint(){
@@ -138,21 +157,63 @@ function addPoint(){
         //console.log(global_currentQuestJSON);
          
          global_currentQuestJSON.points = JSON.stringify(points);         
-         console.log(global_currentQuestJSON);
+        //console.log(global_currentQuestJSON);
          savePoints();
      
 
        
 }
 
+
+
+
+function savePoint(){
+    
+          var inobj=$("#editPointForm").serializeObject();
+          //alert(global_current_point);
+          
+          
+         //now get the points as JSON 
+         
+         var points = getPoints();
+         //console.log(points);
+        
+         //console.log(points[global_current_point]);
+         
+         points[global_current_point] = inobj;
+         
+         global_currentQuestJSON.points = JSON.stringify(points);         
+         //console.log(global_currentQuestJSON);
+         savePoints();
+     
+
+       
+}
+
+
+function deletePoint(){
+  
+         var points = getPoints();
+         //console.log(points);
+        
+         //console.log(points[global_current_point]);
+         
+         delete  points[global_current_point];
+         
+         global_currentQuestJSON.points = JSON.stringify(points);         
+         //console.log(global_currentQuestJSON);
+         savePoints();
+  
+       
+}
+
 function editPoint(id){
     
-  
     var points = getPoints();
-    console.log(points); 
-     
+    ///console.log(points[id]); 
+     global_current_point = id;
     
-   // $( "#editPointsTemplate" ).tmpl(points).appendTo( "#editPointForm" );
+    $("#editPointsTemplate" ).tmpl(points[id]).appendTo( "#editPointForm" );
 
    
 }
@@ -177,7 +238,7 @@ function savePoints(){
               success: function(result) {
                 //alert(result);
                    listPoints();
-                   jQT.goTo('#Points', 'flip');
+                   jQT.goTo('#Points', '');
               },
           });
    

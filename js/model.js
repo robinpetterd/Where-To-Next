@@ -5,12 +5,11 @@
 */
 
 
-
 /* point data is string so need some work getting and out. 
  * 
  */
 function getPoints(){
-    
+     
       if(global_currentQuestJSON.points != ''){
               var points = JSON.parse(global_currentQuestJSON.points);
          } else {

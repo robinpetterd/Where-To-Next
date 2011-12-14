@@ -1,6 +1,7 @@
     
 var global_current_point;
 
+
 //tell the client where to connect
 RPCconnect('/rpc');
 
@@ -39,7 +40,6 @@ function CreateQuest() {
 
 function EditQuest() {
       var inobj=$("#editQuestForm").serializeJSON();
-
       //window.console.log(inobj);
       
       RPCcall({

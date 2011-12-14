@@ -48,9 +48,7 @@ function getLocation() {
     
 }
 
-function showQuest(template,target) {
- 
-  
+function showQuest(template,target,nextDiv) {
  
   RPCcall({
       funct:'showQuest', 
@@ -61,6 +59,7 @@ function showQuest(template,target) {
       success: function(result) {
       
       global_currentQuestJSON = result;
+      jQT.goTo(nextDiv,'slideleft');
       
   },
 });

@@ -33,9 +33,7 @@
                 if (checkGeoLocation())
                 {
                     callback = fn;
-                    navigator.geolocation.getCurrentPosition(savePosition
-                    
-                    );
+                    navigator.geolocation.getCurrentPosition(savePosition);
                     return true;
                 } else {
                     console.log('Device not capable of geo-location.');

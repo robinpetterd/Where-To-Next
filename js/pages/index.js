@@ -74,9 +74,10 @@ function listQuests() {
       //paramaters:{params:inobj},
       template:'#questLists_template',
       target:'#questLists',
+      success: function() {jQT.goTo('#View');}
   });
-
-  return true; 
+  
+  return false; 
 }
 
 function startwatching() {
@@ -84,13 +85,13 @@ function startwatching() {
 }
 
 function positionupdated(position) {
-   //alert(JSON.stringify(position.coords));
+   console.log(JSON.stringify(position.coords));
    currentcoords=position.coords;
    Pointsloop();
 }
 
 function gpserror(err) {
-  alert(JSON.stringify(err));
+  console.log(JSON.stringify(err));
 }
 
 function stopwatching() {
@@ -148,7 +149,10 @@ function Pointsloop() {
 }
 
 
-
+function show_pointdetails(id) {
+  var plist=getPoints();
+  $('#pointdetails').html($('#pointdetails_template').tmpl(plist[i]));
+}
 
 
 

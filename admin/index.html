@@ -62,24 +62,7 @@
             
         </script>
         <style type="text/css" media="screen">
-            #jqt.fullscreen #home .info {
-                display: none;
-            }
-            div#jqt #about {
-                padding: 100px 10px 40px;
-                text-shadow: rgba(255, 255, 255, 0.3) 0px -1px 0;
-                font-size: 13px;
-                text-align: center;
-                background: #161618;
-            }
-            div#jqt #about p {
-                margin-bottom: 8px;
-            }
-            div#jqt #about a {
-                color: #fff;
-                font-weight: bold;
-                text-decoration: none;
-            }
+           
         </style>
     </head>
     <body>
@@ -111,7 +94,7 @@
                     <!-- Add the list of other -->
                     
                         <script id="questLists_template" type="text/x-jquery-tmpl">
-                              <li class="arrow"><a href="#edit" onClick="ChangeCurrent(${key});showQuest('#editQuest_template','#editQuestForm');">${name} </a> </li> 
+                              <li class="arrow"><a href="#" onClick="ChangeCurrent(${key});showQuest('#editQuest_template','#editQuestForm','#edit');">${name} </a> </li> 
                        </script>    
                                       
                     <ul class="edit rounded" id="questLists">
@@ -160,7 +143,7 @@
                          </ul>
                     
                          <input type="hidden" name="points" id="points" value="" />
-                         <input type="submit" class="greenButton AddQuest" value="Create"/></input>
+                         <input type="submit" class="greenButton AddQuest" value="Create Quest"/></input>
 
                         </form>
                           
@@ -182,8 +165,10 @@
                         <script id="editQuest_template" type="text/x-jquery-tmpl">
                               
                          <br />  
-                                <a href="#Points" class="greenButton listPoints" onClick="listPoints(${key});">Points</a>
-                         <br />  
+                                <a href="#Points" class="greenButton listPoints" onClick="listPoints(${key});">Edit Points</a>
+                                <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()">Add Point</a>
+
+                           <br />  
                      
                             <ul class="edit rounded">
 
@@ -253,11 +238,9 @@
                         <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()">Add Point</a>
 
                  
-                 
-
                         <!-- Add the list of other -->
                         <ul class="edit rounded" id="pointsList">
-                                
+                            <li class="arrow">dfdsaf</li>
                         </ul>
                </div>  
             
@@ -297,7 +280,7 @@
 
                     </ul>
                     
-                         <input type="submit" class="greenButton AddPoint" value="Create"></input>
+                         <input type="submit" class="greenButton AddPoint" value="Create Point"></input>
 
                </form>
                 

@@ -1,12 +1,12 @@
     
 var global_current_point;
 
+
 //tell the client where to connect
 RPCconnect('/rpc');
 
 // pull down the list of quests this user owns
 listMyQuests();
-
 
 function CreateQuest() {
       var inobj=$("#CreateQuestForm").serializeJSON();
@@ -40,7 +40,6 @@ function CreateQuest() {
 
 function EditQuest() {
       var inobj=$("#editQuestForm").serializeJSON();
-
       //window.console.log(inobj);
       
       RPCcall({
@@ -141,8 +140,7 @@ function addPoint(){
           //console.log(global_currentQuestJSON);
          //now get the points as JSON 
          
-         
-        $('"#CreatePointForm"').not(':button, :submit, :reset, :hidden').val('');
+        //$('"#CreatePointForm"').not(':button, :submit, :reset, :hidden').val('');
 
 
          var points = getPoints();
@@ -159,9 +157,8 @@ function addPoint(){
          
          points[clength] = inobj;
         //console.log(global_currentQuestJSON);
-         
          global_currentQuestJSON.points = JSON.stringify(points);         
-        // console.log(global_currentQuestJSON);
+         //console.log(global_currentQuestJSON);
          savePoints();
      
 

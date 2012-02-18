@@ -30,11 +30,13 @@ function ChangeCurrent(CurrentID) {
 
 function getLocation() {
     
-    //alert('looing for location');
+    //alert('looking for location');
     
     var lookup = jQT.updateLocation(function(coords){
                     if (coords) {
+                       
                          global_currentCoords = coords;
+                        // console.log(coords);
                          $('.latitude').empty().val(coords.latitude);
                          $('.longitude').empty().val(coords.longitude);
                        

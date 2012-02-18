@@ -33,8 +33,7 @@
                 if (checkGeoLocation())
                 {
                     callback = fn;
-                    navigator.geolocation.getCurrentPosition(savePosition,
-                      {enableHighAccuracy:true}
+                    navigator.geolocation.getCurrentPosition(savePosition
                     
                     );
                     return true;

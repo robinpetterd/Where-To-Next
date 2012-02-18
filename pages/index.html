@@ -15,7 +15,8 @@
        
         
         <script src="/js/gobal.js" type="text/javascript" charset="utf-8"></script>
-
+        <script src="/js/pages/geo.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/pages/latlon.js" type="text/javascript" charset="utf-8"></script>
         <script src="/js/jquery-1.5.1.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="/js/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
         
@@ -109,7 +110,7 @@
                
                 <ul class="rounded">
                    <li class="arrow" ><a href="/admin/index.html" rel="external">Author</a> </li>
-                   <li class="arrow view plays" ><a href="#View" onClick="return listQuests();" >View</a> </li>
+                   <li class="arrow view plays" ><a href="#View" rel="external" onclick="return listQuests();" >View</a> </li>
 
 
                 </ul>
@@ -127,7 +128,7 @@
             <div id="View">
                 <div class="toolbar">
                     <h1>View</h1>
-                    <a href="#" class="back">Back</a>
+                    <a href="#"  rel="external" class="back" onclick="jQT.goTo('#home');return false;">Back</a>
                 </div>
                  <br />
                 
@@ -137,7 +138,7 @@
                         <script id="questLists_template" type="text/x-jquery-tmpl">
                             
                             
-                              <li class="arrow quest"><a href="#play" onClick="startQuest(${key});">${name} {{if optdraft=="checked"}} (Draft){{/if}}</a> </li> 
+                              <li class="arrow quest"><a href="#play" rel="external" onClick="return startQuest(${key});">${name} {{if optdraft=="checked"}} (Draft){{/if}}</a> </li> 
                       
                         
                         
@@ -173,7 +174,7 @@
                           <div class="toolbar">
                             <h1>${directions} </h1>
                           
-                            <a href="#" class="back">Back</a>
+                            <a href="#" class="back" onclick="jQT.goTo('#View'); return false;">Back</a>
                           </div>
                           <div>
                             
@@ -218,7 +219,7 @@
             
             <div id="play"">
             </div>
-            <div id="pointdetails"">
+            <div id="pointdetails">
             </div>
             
             

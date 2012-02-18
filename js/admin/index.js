@@ -140,8 +140,7 @@ function addPoint(){
           //console.log(global_currentQuestJSON);
          //now get the points as JSON 
          
-         
-        $('"#CreatePointForm"').not(':button, :submit, :reset, :hidden').val('');
+        //$('"#CreatePointForm"').not(':button, :submit, :reset, :hidden').val('');
 
 
          var points = getPoints();
@@ -158,9 +157,8 @@ function addPoint(){
          
          points[clength] = inobj;
         //console.log(global_currentQuestJSON);
-         
          global_currentQuestJSON.points = JSON.stringify(points);         
-        // console.log(global_currentQuestJSON);
+         //console.log(global_currentQuestJSON);
          savePoints();
      
 

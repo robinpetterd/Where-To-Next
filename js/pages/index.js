@@ -1,5 +1,11 @@
 var watchid;
 var currentcoords;
+var howclosedoineedtobe=5;
+var currentscore=0;
+var plist;
+startwatching();
+
+
     
 //tell the client where to connect
 RPCconnect('/rpc');
@@ -87,7 +93,11 @@ function startwatching() {
 function positionupdated(position) {
    console.log(JSON.stringify(position.coords));
    currentcoords=position.coords;
-   Pointsloop();
+   try {
+    Pointsloop();
+  } catch(e) {
+    
+  }
 }
 
 function gpserror(err) {
@@ -111,7 +121,8 @@ function startQuest(key) {
       success: function(result) {
       
         global_currentQuestJSON = result;
-        startwatching();
+        plist=getPoints();
+        Pointsloop();
         jQT.goTo('#play');
     },
 }); 
@@ -119,28 +130,40 @@ function startQuest(key) {
 }
 
 function Pointsloop() {
-	var lookup = jQT.updateLocation(function(coords){
-		if (coords) {
+	
+
+    if (currentcoords) {
 			//global_currentCoords = coords; 
 			//$('.latitude').empty().val(coords.latitude);
 			//$('.longitude').empty().val(coords.longitude);
-			var plist=getPoints();
+			//var plist=getPoints();
 			//alert(JSON.stringify(coords.latitude));
-			var p1from = new LatLon(coords.latitude, coords.longitude);
+			var p1from = new LatLon(currentcoords.latitude, currentcoords.longitude);
 			for (i in plist) {
 				//alert(JSON.stringify(i));
 				//alert(JSON.stringify(plist[i].latitude));
 				var p2to = new LatLon(plist[i].latitude, plist[i].longitude);
-				plist[i].distance = p1from.distanceTo(p2to);;
+				plist[i].distance = p1from.distanceTo(p2to);
+        if (plist[i].distance<0.8) {
+          plist[i].distancedesc=Math.round(plist[i].distance*1000) + " m";  
+        } else {
+          parseFloat(plist[i].distancedesc=plist[i].distance).toFixed(1) + " km";
+        }
 				plist[i].heading=parseInt(p1from.bearingTo(p2to));
-				//alert(JSON.stringify(plist[i]));
+        plist[i].shortbearing=Math.round((plist[i].heading-22.5)/45);
+        plist[i].bearingdesc=bearingarray[plist[i].shortbearing];
+        
 				$('#pointlist').append($('#pointlist_template').tmpl(plist[i]));
+        if (plist[i].distance<(currentcoords.accuracy+howclosedoineedtobe)/1000) {
+          plist[i].done="true";
+          //alert('yay');
+        }
+        
 			}
-		   
+		  console.log(plist); 
 		} else {
 			alert('Device not capable of geo-location.');
 		}
-    });
     
     return false;
 
@@ -152,7 +175,18 @@ function Pointsloop() {
 function show_pointdetails(id) {
   var plist=getPoints();
   $('#pointdetails').html($('#pointdetails_template').tmpl(plist[i]));
+  //alert(id+','+plist[id].latitude+','+plist[id].longitude);
+	var myOptions = {
+	  center: new google.maps.LatLng(plist[id].latitude, plist[id].longitude),
+	  zoom: 12,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+	// note: this is not displaying maps correctly for multiple calls to show_pointdetails
+	// http://stackoverflow.com/questions/4837611/google-maps-api-3-jqtouch discusses a workaround
 }
+
+
 
 
 

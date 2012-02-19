@@ -763,3 +763,72 @@ input[type='submit'] {
                 font-weight: bold;
                 text-decoration: none;
             }
+            
+            
+            
+            
+            /* ---- Our custom stuff **/
+
+#CurrentQuest #desc {
+    
+    font: bold 18px "Helvetica Neue", Helvetica;
+    color: black;
+    margin: 10px 20px 5px;
+    
+    width:80%;
+    float:left;
+    
+    background-color: white;
+    
+    padding:10px;
+    
+        -webkit-border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,.3) 1px 1px 3px;
+    
+}
+
+#CurrentQuest #scoreArea {
+    
+    font: 18px "Helvetica Neue", Helvetica;
+    text-align: center;
+    margin: 10px 20px 5px;
+    
+    color:black;
+    
+    width:10%;
+    float:left; 
+    
+    background-color: white;
+    
+     padding:10px;
+
+    -webkit-border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,.3) 1px 1px 3px;
+}
+
+#CurrentQuest #score {
+    
+   font-size: 2em;
+   font-variant: bold;
+}
+
+.clear {
+    clear: both;
+}
+
+/* icon stuff from twitter */
+
+ a img.icon {
+     padding-right: 10px;
+  }
+
+
+ #jqt .toolbar .button.home {
+     width:22px;
+  }
+  
+ .toolbar .home img{
+     padding-top: 2px;
+     margin-left: -3px;
+  }
+  

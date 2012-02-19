@@ -2,10 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-<!--
-        <script src="http://jsconsole.com/remote.js?"></script>
-        <script src="http://192.168.1.2:8080/target/target-script-min.js"></script>
--->
+
         <title>Where to Now</title>
         
          <!-- our -->
@@ -87,12 +84,14 @@
                 <div class="toolbar">
                     <h1>Author</h1>
                     <a href="/pages/index.html" class="back" rel="external">Back</a>
-                    <a class="button slideup" id="infoButton" href="#about">About</a>
+                    <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
+
                 </div>
                  <br />
                  
                     <!-- Add the list of other -->
-                    
+                         <h2>Your Quests</h2>
+                                            
                         <script id="questLists_template" type="text/x-jquery-tmpl">
                               <li class="arrow"><a href="#" onClick="ChangeCurrent(${key});showQuest('#editQuest_template','#editQuestForm','#edit');">${name} </a> </li> 
                        </script>    
@@ -102,9 +101,8 @@
                     </ul>
                        
                     <br />
-                    <a href="#add" class="greenButton AddQuest">Add Quest</a>
+                    <a href="#add" class="greenButton AddQuest"><img class="icon" src="/pages/themes/wheretonext/img/add.png"/>Add Quest</a>
 
-               
             </div>
             
             
@@ -121,6 +119,8 @@
                 <div class="toolbar">
                     <h1>Add</h1>
                     <a href="#" class="back">Back</a>
+                    <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
+
                 </div>
                 <form onSubmit="CreateQuest()" id="CreateQuestForm">
                     <ul class="edit rounded">
@@ -159,17 +159,21 @@
                 <div class="toolbar">
                     <h1>Edit</h1>
                     <a href="#" class="back">Back</a>
+                    <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
+
                 </div>
                 
                          
                         <script id="editQuest_template" type="text/x-jquery-tmpl">
                               
                          <br />  
-                                <a href="#Points" class="greenButton listPoints" onClick="listPoints(${key});">Edit Points</a>
-                                <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()">Add Point</a>
+                                <a href="#Points" class="greenButton listPoints" onClick="listPoints(${key});"><img class="icon" src="/pages/themes/wheretonext/img/edit.png"/>Edit Points</a>
+                                <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()"><img class="icon" src="/pages/themes/wheretonext/img/add-points.png"/> Add Point</a>
 
                            <br />  
-                     
+                        
+                          <h1>Quest details</h1>
+
                             <ul class="edit rounded">
 
                                 <li><input type="text" name="name" placeholder="Name for the Quest" value="${name}" id="name"/></li>
@@ -178,7 +182,7 @@
                                 <li><input type="text" name="tags" placeholder="Tags" value="${tags}"  /></li>
                             </ul>
                          
-                             <h3>Feedback Options</h3>
+                             <h2>Feedback Options</h2>
                          
                               <ul class="edit rounded">
 
@@ -187,7 +191,7 @@
                                  <li>Show Arrows<span class="toggle"><input type="checkbox" name="optarrows" value="checked" ${optarrows}/></span></li>
                               </ul>
                                 
-                            <h3>Status</h3>
+                            <h2>Status</h2>
                             
                             <ul class="edit rounded">
 
@@ -229,13 +233,13 @@
                     <div class="toolbar">
                         <h1>Points</h1>
                         <a href="#" class="back">Back</a>
-                        <a href="#author" class="button author" onClick="listMyQuests();">Author</a>
+                        <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
 
                     </div>
 
                        <br />
                        
-                        <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()">Add Point</a>
+                        <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()"><img class="icon" src="/pages/themes/wheretonext/img/add-points.png"/>Add Point</a>
 
                  
                         <!-- Add the list of other -->
@@ -254,7 +258,7 @@
                 <div class="toolbar">
                     <h1>Add Point</h1>
                     <a href="#" class="back">Back</a>
-                    <a href="#author" class="button author" onClick="listMyQuests();">Author</a>
+                    <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
 
                 </div>
                 
@@ -297,7 +301,7 @@
                 <div class="toolbar">
                     <h1>edit Point</h1>
                     <a href="#" class="back">Back</a>
-                    <a href="#author" class="button author" onClick="listMyQuests();">Author</a>
+                    <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
 
                 </div>
            
@@ -347,7 +351,10 @@
           <!-- ################################################################################  -->
             
             <div id="about" class="selectable">
-                    <p> TODO - Add the information about the service 
+                    <p>
+                    <h2>Credits</h2>
+                        <p>Icon by <a href="http://glyphicons.com/">http://glyphicons.com</p>
+                   
                     <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
             </div>
            

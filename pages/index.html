@@ -19,6 +19,7 @@
         <script src="/js/pages/latlon.js" type="text/javascript" charset="utf-8"></script>
         <script src="/js/jquery-1.5.1.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="/js/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC-UmPfHZfe2pS46UgCZtxSStaWVRFIjAY&sensor=true"></script>
         
         <script src="/js/jqt.location.js" type="application/x-javascript" charset="utf-8"></script>
 
@@ -87,7 +88,7 @@
                 </div>
                 
                 <div class="info">
-                    <p>TODO - add intro and </p>
+                    <p>wheretonext - a mobile treasure hunt</p><p>Click on 'Author' to create or edit a hunt, or 'View' to look for treasure hunts in your area.</p>
                 </div>
                 
                
@@ -147,8 +148,8 @@
                           <li class="arrow">
                             <a href="#pointdetails" onclick="show_pointdetails('${id}')">
                               <b>${directions}</b>
-                              {{if distance}}<br/>Distance: ${distance} {{/if}}
-                              {{if heading}}<br/>Heading: ${heading} {{/if}}
+                              {{if distance}}<br/>Distance: ${distancedesc} {{/if}}
+                              {{if heading}}<br/>Bearing: ${heading}&deg; ${bearingdesc} <img src="/pages/themes/wheretonext/img/${shortbearing}.png"> {{/if}}
                               </p>
                             </a>
                           </li>
@@ -157,12 +158,12 @@
                           <div class="toolbar">
                             <h1>${directions} </h1>
                           
-                            <a href="#" class="back" onclick="jQT.goTo('#View'); return false;">Back</a>
+                            <a href="#" class="back">Back</a>
                           </div>
-                          <div>
+                          <div id="map_canvas" style="width:100%;height:240px">
                             
                           </div>
-                          
+                          <p>hello cruel world</p>
                         </script>
                         
                         <script id="playQuest_template" type="text/x-jquery-tmpl">

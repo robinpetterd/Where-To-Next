@@ -15,7 +15,10 @@ function getPoints(){
          } else {
              var points = {};
          }
-         
+         for (i in points) {
+          points[i].done="false";
+          points[i].id=i; 
+         }
          return points;
 }
 

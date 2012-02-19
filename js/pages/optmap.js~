@@ -1,0 +1,16 @@
+$(document).ready(function() {
+	$('#map_canvas').bind( 'pageAnimationEnd', function( e, i ) {
+		if( i.direction != 'in' ) {
+			return;
+		}
+		var map = new google.maps.Map( $('#map_canvas')[0], {
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			center: new google.maps.LatLng(39.946416520914234,-75.14545440673828),
+			disableDefaultUI: true
+		});
+		
+	});
+});
+                       
+

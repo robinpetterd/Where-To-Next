@@ -37,17 +37,17 @@
                 startupScreen: 'jqt_startup.png',
                 statusBar: 'black',
                 preloadImages: [
-                    'themes/jqt/img/activeButton.png',
-                    'themes/jqt/img/back_button.png',
-                    'themes/jqt/img/back_button_clicked.png',
-                    'themes/jqt/img/blueButton.png',
-                    'themes/jqt/img/button.png',
-                    'themes/jqt/img/button_clicked.png',
-                    'themes/jqt/img/grayButton.png',
-                    'themes/jqt/img/greenButton.png',
-                    'themes/jqt/img/redButton.png',
-                    'themes/jqt/img/whiteButton.png',
-                    'themes/jqt/img/loading.gif'
+                    '/pages/themes/wheretonext/img/activeButton.png',
+                    '/pages/themes/wheretonext/img/back_button.png',
+                    '/pages/themes/wheretonext/back_button_clicked.png',
+                    '/pages/themes/wheretonext/img/blueButton.png',
+                    '/pages/themes/wheretonext/img/button.png',
+                    '/pages/themes/wheretonext/img/button_clicked.png',
+                    '/pages/themes/wheretonext/img/grayButton.png',
+                    '/pages/themes/wheretonext/img/greenButton.png',
+                    '/pages/themes/wheretonext/img/redButton.png',
+                    '/pages/themes/wheretonext/img/whiteButton.png',
+                    '/pages/themes/wheretonext/img/loading.gif'
                     ]
             });
             
@@ -101,7 +101,7 @@
                     </ul>
                        
                     <br />
-                    <a href="#add" class="greenButton AddQuest"><img class="icon" src="/pages/themes/wheretonext/img/add.png"/>Add Quest</a>
+                    <a href="#add" class="greenButton AddQuest"><img class="icon" src="/pages/themes/wheretonext/img/add.png"/>Add a new quest</a>
 
             </div>
             
@@ -117,11 +117,14 @@
             
              <div id="add">
                 <div class="toolbar">
-                    <h1>Add</h1>
+                    <h1>New Quest</h1>
                     <a href="#" class="back">Back</a>
                     <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
 
                 </div>
+                 
+                <h2>Quest Options</h2>
+
                 <form onSubmit="CreateQuest()" id="CreateQuestForm">
                     <ul class="edit rounded">
                       
@@ -130,20 +133,20 @@
                         <li><input type="text" name="tags" placeholder="Tags" id="tags" /></li>
                     </ul>
                         
-                        <h2>Feedback Options</h2>
+                        <h2>How is the feedback about the locations shown</h2>
                          <ul class="edit rounded"> 
-                             <li>Show Hot Cold <span class="toggle"><input type="checkbox" name="opthotcold" value="checked"/></span></li>
-                             <li>Show Map <span class="toggle"><input type="checkbox" name="optmap" value="checked" /></span></li>
-                             <li>Show Arrows<span class="toggle"><input type="checkbox" name="optarrows" value="checked" /></span></li>
+                             <li>Allow Distance <span class="toggle"><input type="checkbox" name="opthotcold" value="checked" checked="ON"/></span></li>
+                             <li>Allow Map  - current not working <span class="toggle"><input type="checkbox" name="optmap" value="checked" checked="ON" /></span></li>
+                             <li>Allow Arrows<span class="toggle"><input type="checkbox" name="optarrows" value="checked" checked="ON" /></span></li>
                         </ul>
                         
-                         <h2>Status</h2>
+                         <h2>Control who can see the quest - only you will be able to see draft quests</h2>
                          <ul class="edit rounded"> 
-                             <li>Draft<span class="toggle"><input type="checkbox" name="optdraft" value="True" /></span></li>
+                             <li>Draft<span class="toggle"><input type="checkbox" name="optdraft" value="True" checked="ON"/></span></li>
                          </ul>
                     
                          <input type="hidden" name="points" id="points" value="" />
-                         <input type="submit" class="greenButton AddQuest" value="Create Quest"/></input>
+                         <input type="submit" class="greenButton AddQuest" value="Create quest"/></input>
 
                         </form>
                           
@@ -168,7 +171,7 @@
                               
                          <br />  
                                 <a href="#Points" class="greenButton listPoints" onClick="listPoints(${key});"><img class="icon" src="/pages/themes/wheretonext/img/edit.png"/>Edit Points</a>
-                                <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()"><img class="icon" src="/pages/themes/wheretonext/img/add-points.png"/> Add Point</a>
+                               
 
                            <br />  
                         
@@ -231,20 +234,23 @@
             
              <div id="Points">
                     <div class="toolbar">
-                        <h1>Points</h1>
+                        <h1>Locations</h1>
                         <a href="#" class="back">Back</a>
                         <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
 
                     </div>
-
+                       
+                   <div class="info">
+                    <p>Go to a place, add a location, clue and feedback.</p>
+                   </div>
                        <br />
                        
-                        <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()"><img class="icon" src="/pages/themes/wheretonext/img/add-points.png"/>Add Point</a>
+                        <a href="#addPoint" class="greenButton AddQuest" onClick="getLocation()"><img class="icon" src="/pages/themes/wheretonext/img/add-points.png"/>Add a new location</a>
 
-                 
+                        <h2>Existing Locations</h2>
                         <!-- Add the list of other -->
                         <ul class="edit rounded" id="pointsList">
-                            <li class="arrow">dfdsaf</li>
+                            <li class="arrow">No locations found</li>
                         </ul>
                </div>  
             
@@ -258,7 +264,7 @@
                 <div class="toolbar">
                     <h1>Add Point</h1>
                     <a href="#" class="back">Back</a>
-                    <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
+                    <a href="/pages/index.html" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
 
                 </div>
                 
@@ -266,25 +272,36 @@
             <span class="longitude"> </span>
                 
            <br/>
-            <div  class="whiteButton getLocation" onClick="getLocation()">Refresh Location</div>
+            <div  class="whiteButton getLocation" onClick="getLocation()">Find my current location</div>
           
                <form onSubmit="addPoint()" id="CreatePointForm">
+                   
+
+                         
+                         
+                         
                     <ul class="edit rounded">
                         
-                         <li><input type="text" name="latitude" class="latitude" id="latitude" /></li>
-                         <li><input type="text" name="longitude" class="longitude"  id="longitude"/></li>
+                         <li>
+                         <span class="locDisplay">
+                            Lat:
+                            <input type="text" name="latitude" class="latitude" id="latitude" /> </span>
+
+                         <span class="locDisplay">
+                            Lon:
+                         <input type="text" name="longitude" class="longitude"  id="longitude"/></li></span>
         
                                                 
-                        <li><textarea placeholder="Add feedback" name="Feedback"></textarea></li>
-                        <li><textarea placeholder="Add directions or the clue" name="directions" ></textarea></li>
-
-                        <li><input type="text" name="score" placeholder="score" id="score" /></li>
+                        
+                        <li><textarea placeholder="Directions or the clue" name="directions" ></textarea></li>
+                        <li><textarea placeholder="Feedback" name="Feedback"></textarea></li>
+                        <li class="score">Score: <input type="text" name="score" placeholder="score" id="score" value="1"/></li>
                         
                          
 
                     </ul>
                     
-                         <input type="submit" class="greenButton AddPoint" value="Create Point"></input>
+                         <input type="submit" class="greenButton AddPoint" value="Add this location"></input>
 
                </form>
                 
@@ -299,7 +316,7 @@
             
             <div id="editPoint">
                 <div class="toolbar">
-                    <h1>edit Point</h1>
+                    <h1>Edit location</h1>
                     <a href="#" class="back">Back</a>
                     <a href="/pages/index.html"" class="home button" rel="external"><img class="icon" src="/pages/themes/wheretonext/img/home.png"/></a>
 
@@ -309,13 +326,16 @@
                      <input type="hidden" name="currentPoint" class="currentPoint" id="currentPoint" value="${latitude}"  />
                      <ul class="edit rounded">
                         
-                             <li><input type="text" name="latitude" class="latitude" id="latitude" value="${latitude}"  /></li>
-                             <li><input type="text" name="longitude" class="longitude"  id="longitude" value="${longitude}" /></li>
+                             <li class="locDisplay">
+                             Lat:
+                             <input type="text" name="latitude" class="latitude" id="latitude" value="${latitude}"  />
+                             Lon:
+                             <input type="text" name="longitude" class="longitude"  id="longitude" value="${longitude}" /></li>
 
-                            <li><textarea placeholder="Feedback" name="Feedback" value="${Feedback}" >${Feedback}</textarea></li>
-                            <li><textarea placeholder="Directions or the clue" name="directions" value="${directions}" >${directions}</textarea></li>
 
-                            <li><input type="text" name="score" placeholder="score" id="score" value="${score}"  /></li>
+                            <li>Directions <textarea placeholder="Directions or the clue" name="directions" value="${directions}" >${directions}</textarea></li>
+                            <li>Feedback <textarea placeholder="Feedback" name="Feedback" value="${Feedback}" >${Feedback}</textarea></li>
+                            <li  class="score">Score: <input type="text" name="score" placeholder="score" id="score" value="${score}"  /></li>
 
 
 
@@ -327,13 +347,6 @@
 
                 </script>
 
-                      
-                        
-                        
-            <span class="latitude"> </span>
-            <span class="longitude"> </span>
-                
-           <br/>
             <div  class="whiteButton getLocation" onClick="getLocation()">Refresh Location</div>
           
                <form onSubmit="savePoint()" id="editPointForm">
@@ -358,7 +371,11 @@
                     <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
             </div>
            
-         
+
+
+
+
+      
         
            
          

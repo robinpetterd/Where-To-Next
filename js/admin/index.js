@@ -10,7 +10,6 @@ listMyQuests();
 
 function CreateQuest() {
       var inobj=$("#CreateQuestForm").serializeJSON();
-
       //window.console.log(inobj);
       global_currentQuestJSON = inobj;
       
@@ -89,13 +88,18 @@ function DeleteQuest(key) {
 function listMyQuests() {
   //var inobj=$("#CreateQuestForm").serializeJSON()
   
-  RPCcall({
-      funct:'listMyQuests', 
-      //paramaters:{params:inobj},
-      url:'/rpcedit',
-      template:'#questLists_template',
-      target:'#questLists',
-});
+      RPCcall({
+          funct:'listMyQuests',
+          //paramaters:{params:inobj},
+          url:'/rpcedit',
+          template:'#questLists_template',
+          target:'#questLists',
+           success: function(result) {
+            //console.log(result);
+
+      }
+
+    });
 
   return false; 
 }
@@ -103,28 +107,31 @@ function listMyQuests() {
 
 function listPoints(key){
      
-     //console.log('-------- in points -------');
+    ///console.log('-------- in points -------');
      
      global_currentQuest = key;
     
      var points = getPoints();
-     //console.log(points);
+     console.log(points);
      
      //Some debug stuff
-     /*     $.each(points, function(key, value) { 
+          $.each(points, function(key, value) { 
             console.log(key + ': ' + value); 
                $.each(value, function(key, value) { 
                     console.log(key + ': ' + value); 
                  });
 
-      });*/
+      });
        
        $('#pointsList').empty();
        
        $.each(points, function(i,point) { 
-                //console.log(point.latitude); 
-              
-                $('#pointsList').append('<li class="arrow"><a href="#editPoint"  onClick="editPoint('+ i +')" >' + point.Feedback  + '</a></li>');
+                console.log(point); 
+                var displaytext=point.Feedback;
+                if (displaytext=='') {
+                   displaytext=point.directions;
+                } 
+                $('#pointsList').append('<li class="arrow"><a href="#editPoint"  onClick="editPoint('+ i +')" >' + displaytext  + '</a></li>');
                 
        });
 
@@ -135,7 +142,7 @@ function listPoints(key){
 
 
 function addPoint(){
-    
+        //alert('here');
           var inobj=$("#CreatePointForm").serializeObject();
           //console.log(global_currentQuestJSON);
          //now get the points as JSON 
@@ -144,6 +151,8 @@ function addPoint(){
 
 
          var points = getPoints();
+
+         //console.log('getting existing points');
          //console.log(points);
          var clength = 0;
          
@@ -173,11 +182,9 @@ function savePoint(){
           var inobj=$("#editPointForm").serializeObject();
           //alert(global_current_point);
           
-          
          //now get the points as JSON 
          
          var points = getPoints();
-         //console.log(points);
         
          //console.log(points[global_current_point]);
          

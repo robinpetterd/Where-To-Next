@@ -721,7 +721,7 @@ body {
 
 
 #jqt .info {
-    background: #dce1eb;
+    background: #FFFFFF;
     font-size: 12px;
     line-height: 16px;
     text-align: center;
@@ -751,17 +751,11 @@ input[type='submit'] {
                 display: none;
             }
             div#jqt #about {
-                padding: 100px 10px 40px;
+                padding: 10px;
                 font-size: 13px;
-                text-align: center;
             }
             div#jqt #about p {
                 margin-bottom: 8px;
-            }
-            div#jqt #about a {
-                color: #fff;
-                font-weight: bold;
-                text-decoration: none;
             }
             
             
@@ -832,3 +826,101 @@ input[type='submit'] {
      margin-left: -3px;
   }
   
+ div#addPoint ul.edit.rounded li select {
+      background-color:red;
+  }
+
+  /*
+ #jqt #addPoint .latitude {
+          background-color:red;
+        
+
+  }
+  
+  
+   #jqt #addPoint .longitude {
+          background-color:green;
+      
+  }
+
+
+
+
+ #jqt #addPoint .locDisplay {
+          background-color:pink;
+          display: inline-block;
+          width: 30%;
+          float:left;
+
+  }
+
+   */
+
+ 
+  
+   #jqt #addPoint .locDisplay input {
+          display: inline;
+          width:30%;
+  }
+
+
+   #jqt #addPoint li.score input {
+          display: inline;
+          width:30%;
+  }
+
+
+  #jqt #editPoint .locDisplay input {
+          display: inline;
+          width:30%;
+  }
+
+  
+   #jqt #editPoint li.score input {
+          display: inline;
+          width:30%;
+  }
+
+
+
+  
+
+
+  
+
+/*** Stuff to do with the view**/
+
+#jqt .found {
+          background-color:#7ac98f;
+
+  }
+
+
+
+#jqt #Feedback #FeedbackDisplay {
+      width:90%;
+      margin-left:auto;
+      margin-right:auto;
+
+      padding-top:5px;
+}
+
+#jqt #about a {
+    color:black;
+}
+
+
+.signal_good {
+  color:green;
+  font-size: 5;
+}
+  
+.signal_poor {
+  color:orange;
+  font-size: 5;
+}
+
+.signal_none {
+  color:red;
+  font-size: 5;
+}

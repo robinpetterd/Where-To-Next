@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
 <!--
         <script src="http://jsconsole.com/remote.js?"></script>
-        <script src="http://192.168.1.2:8080/target/target-script-min.js"></script>
 -->
         <title>Where to Now</title>
         
@@ -50,17 +49,17 @@
                 startupScreen: 'jqt_startup.png',
                 statusBar: 'black',
                 preloadImages: [
-                    'themes/jqt/img/activeButton.png',
-                    'themes/jqt/img/back_button.png',
-                    'themes/jqt/img/back_button_clicked.png',
-                    'themes/jqt/img/blueButton.png',
-                    'themes/jqt/img/button.png',
-                    'themes/jqt/img/button_clicked.png',
-                    'themes/jqt/img/grayButton.png',
-                    'themes/jqt/img/greenButton.png',
-                    'themes/jqt/img/redButton.png',
-                    'themes/jqt/img/whiteButton.png',
-                    'themes/jqt/img/loading.gif'
+                    'themes/wheretonext/img/activeButton.png',
+                    'themes/wheretonext/img/back_button.png',
+                    'themes/wheretonext/img/back_button_clicked.png',
+                    'themes/wheretonext/img/blueButton.png',
+                    'themes/wheretonext/img/button.png',
+                    'themes/wheretonext/img/button_clicked.png',
+                    'themes/wheretonext/img/grayButton.png',
+                    'themes/wheretonext/img/greenButton.png',
+                    'themes/wheretonext/img/redButton.png',
+                    'themes/wheretonext/img/whiteButton.png',
+                    'themes/wheretonext/img/loading.gif'
                     ]
             });
             
@@ -88,7 +87,9 @@
                 </div>
                 
                 <div class="info">
-                    <p>wheretonext - a mobile treasure hunt</p><p>Click on 'Author' to create or edit a hunt, or 'View' to look for treasure hunts in your area.</p>
+                    <img src="themes/wheretonext/img/wheretonext-logo.png" />
+                    <h2>mobile treasure hunt</h2>
+                    <p>Click on 'Author' to create or edit a hunt, or 'View' to look for treasure hunts in your area.</p>
                 </div>
                 
                
@@ -145,13 +146,13 @@
          
                     
                         <script id="pointlist_template" type="text/x-jquery-tmpl">
-                          <li class="arrow">
-                            <a href="#pointdetails" onclick="show_pointdetails('${id}')">
+                          <li id="point${id}" class="${done}">
+                            {{if showmap}}<!-- <a href="#pointdetails" onclick="show_pointdetails('${id}')"> -->{{/if}}
                               <b>${directions}</b>
                               {{if distance}}<br/>Distance: ${distancedesc} {{/if}}
                               {{if heading}}<br/>Bearing: ${heading}&deg; ${bearingdesc} <img src="/pages/themes/wheretonext/img/${shortbearing}.png"> {{/if}}
                               </p>
-                            </a>
+                            {{if showmap}} </a>{{/if}} 
                           </li>
                         </script>
                         <script id="pointdetails_template" type="text/x-jquery-tmpl">
@@ -167,35 +168,33 @@
                         </script>
                         
                         <script id="playQuest_template" type="text/x-jquery-tmpl">
-                        <div class="toolbar">
-                          <h1>${name} </h1>
+                          <div class="toolbar">
+                            <h1>${name} <img id="gpssignal" src="/pages/themes/wheretonext/img/signal_blank.png" alt=""></h1>
                           
-                          <a href="#" class="back">Back</a>
-                        </div>
-                             {{if optdraft=="checked"}} <h2>Status (Draft)</h2> {{/if}}     
+                            <a href="#" class="back">Back</a>
+                            </div>
+                            {{if optdraft=="checked"}} <h2>Status (Draft)</h2> {{/if}}     
                        
 
-                             <div id="CurrentQuest">
-                                 <div id="desc"> ${desc}</div>
+                            <div id="CurrentQuest">
+                                 <div id="desc">${desc}</div>
                                  <div id="scoreArea">
-                                     <div id="score">0</div>
-                                     <div class="label">Score</div>
-                                     <div id="timer"></div>
-                                 </div>
+                                 <div id="score">0</div>
+                                 <div class="label">Score</div>
+                                 <div id="timer"></div>
+                            </div>
                                 
                                 
                                 
                                 <!-- our main div's for the building the interface with -->
                                 
-                                <div id="opthotcold"></div>
-                                <div id="optmap"></div>
-                               <div id=" optarrows"></div>
+
                                  
                                
-                              
-                            </div>
+                                                          
+
                             <ul id="pointlist" class="rounded clear"></ul>    
-                       </script>
+                          </script>
                                       
 
                           
@@ -210,13 +209,46 @@
             
             
           <!-- ################################################################################  -->
-          <!-- About screen  -->
+          <!-- View Feedback screen  -->
           <!-- ################################################################################  -->
             
-            <div id="about" class="selectable">
-                    <p> TODO - Add the information about the service 
+            <div id="Feedback" class="selectable">
+
+                <div class="toolbar">
+                    <h1></h1>
+                    <a href="#" class="back">Back</a>
+
+                </div>
+                <div id="FeedbackDisplay">
+                    
+                </div>
+
+                   
+                        
                     <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
             </div>
+
+         <!-- ################################################################################  -->
+          <!-- About screen  -->
+          <!-- ################################################################################  -->
+
+            <div id="about" class="selectable">
+                <h2> Where to next is open source mobile treasure hunt system</h2>
+
+                <h3>Credits</h3>
+                <p></p>
+                <ul>
+                    <li>Stephen Brain</li>
+                    <li><a href="http://www.bluemountains.net" rel="external">Peter Shanks</a></li>
+                    <li><a href="http://wwww.sproutlabs.com.au" rel="external">Robin Petterd</a> </li>
+                </ul>
+                <p>It as built as part the 1st <a href="http://www.sproutlabs.com.au/edit-temporary-education-focus-hackspace/edIT"> EDit</a> – temporary education focus hackspaces
+
+ </p>
+                    <p><br /><br /><a href="#" class="grayButton goback">Close</a></p>
+            </div>
+
+
            
          
         

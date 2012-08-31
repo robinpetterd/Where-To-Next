@@ -1,4 +1,4 @@
-application: appenginetemplate
+application: goherenext
 version: 1
 runtime: python27
 threadsafe: true

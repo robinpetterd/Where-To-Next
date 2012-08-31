@@ -71,7 +71,7 @@ class RPCEditHandler(JsonRpcHandler):
       else:
         q.optdraft=""
       q.put()
-      return True
+      return modelrowtodict(q)
 
     @ServiceMethod
     def deleteQuest(self, key):

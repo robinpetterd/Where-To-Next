@@ -23,8 +23,11 @@ function CreateQuest() {
         //alert(result);
          
          listMyQuests();
+         console.log(result)
+         ChangeCurrent(result.key);
+         showQuest('#editQuest_template','#editQuestForm','#edit');
          //listPoints();
-         jQT.goTo('#Points', '');
+         //jQT.goTo('#Points', '');
 
         //  $('#boot_div').dialog({modal:true,  title:'an alert', width:'460', height:'320' });
       },

@@ -4,7 +4,7 @@ var howclosedoineedtobe=5;
 var currentscore=0;
 var plist;
 var poorgpssignal=100; // If accuracy is more than 100 meters it's a poor signal
-var minimumaccuracy=10; // if you're within 10 meters that's close enough.
+var minimumaccuracy=.01; // .
 startwatching();
 
 
@@ -176,7 +176,7 @@ function Pointsloop() {
 				//alert(JSON.stringify(i));
 				//alert(JSON.stringify(plist[i].latitude));
 				var p2to = new LatLon(plist[i].latitude, plist[i].longitude);
-				plist[i].distance = p1from.distanceTo(p2to);
+				plist[i].distance = p1from.distanceTo(p2to,10);
         
         if (plist[i].distance<0.8) {
           plist[i].distancedesc=Math.round(plist[i].distance*1000) + " m";  
@@ -184,7 +184,7 @@ function Pointsloop() {
           plist[i].distancedesc=parseFloat(plist[i].distancedesc=plist[i].distance).toFixed(1) + " km";
         }
         if (plist[i].distance<=minimumaccuracy) {
-          plist[i].distancedesc="Here";
+          plist[i].distancedesc=plist[i].distance;
           if (plist[i].done=="false") {
              plist[i].done="found";
              currentscore++;
@@ -198,7 +198,7 @@ function Pointsloop() {
         if (global_currentQuestJSON.optarrows=="") {
           plist[i].heading=null; 
         } else {
-				  plist[i].heading=parseInt(p1from.bearingTo(p2to));
+	  plist[i].heading=parseInt(p1from.bearingTo(p2to));
           plist[i].shortbearing=Math.round((plist[i].heading-22.5)/45);
           plist[i].bearingdesc=bearingarray[plist[i].shortbearing];        
         } 

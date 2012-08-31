@@ -924,3 +924,8 @@ input[type='submit'] {
   color:red;
   font-size: 5;
 }
+
+
+#jqt .hide {
+    display: none;
+}
